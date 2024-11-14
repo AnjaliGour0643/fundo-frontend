@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundo Signup</title>
+    <link rel="stylesheet" href="signup.component.scss">
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-form">
+            <h1>Fundo</h1>
+            <p>Create your Fundo Account</p>
+            <form>
+                <div class="user-input">
+                    <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input matInput required>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput required>
+                      </mat-form-field>
+                </div>
+                <div >
+                    <mat-form-field class="username" appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input matInput required>
+                    </mat-form-field>
+                </div>
+                <small>You can use letters, numbers & periods</small>
+                <div class="user-input">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput required>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Confirm</mat-label>
+                        <input matInput required>
+                    </mat-form-field>
+                </div>
+                <small>Use 8 or more characters with a mix of letters, numbers & symbols</small>
+                <div class="links">
+                    <a mat-button href="#" target="_blank">Sign in instead</a>
+                    <button mat-raised-button color="primary">Register</button>
+                </div>
+                
+            </form>
+        </div>
+        <div class="image">
+            <img src="../../../assets/reg-logo.jpg" alt="Fundo User Icon">
+            <p>One account. All of Fundo working for you.</p>
+        </div>
+    </div>
+</body>
+</html>
