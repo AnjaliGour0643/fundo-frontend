@@ -45,11 +45,6 @@ p {
     color: #1a73e8;;
 }
 
-// .links a {
-//     color: #1a73e8;
-//     text-decoration: none;
-// }
-
 .login-button {
     background-color: #1a73e8;
     color: white;
@@ -60,3 +55,7 @@ p {
     float: right;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+}
