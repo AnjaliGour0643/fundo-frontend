@@ -11,32 +11,40 @@
         <div class="signup-form">
             <h1>Fundo</h1>
             <p>Create your Fundo Account</p>
-            <form>
+            <form [formGroup] = "registerForm">
                 <div class="user-input">
                     <mat-form-field appearance="outline">
                         <mat-label>First Name</mat-label>
-                        <input matInput required>
-                      </mat-form-field>
-                      <mat-form-field appearance="outline">
+                        <input matInput formControlName = "firstName">
+                        <mat-error *ngIf="regFormControls['firstName']['errors']?.['required']">First Name is required</mat-error>
+                        <mat-error *ngIf="regFormControls['firstName']['errors']?.['minlength']">First Name must be at least 3 characters</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label>Last Name</mat-label>
-                        <input matInput required>
-                      </mat-form-field>
+                        <input matInput formControlName = "lastName">
+                        <mat-error *ngIf="regFormControls['lastName']['errors']?.['required']">Last Name is required</mat-error>
+                        <mat-error *ngIf="regFormControls['lastName']['errors']?.['minlength']">Last Name must be at least 1 characters</mat-error>
+                    </mat-form-field>
                 </div>
                 <div >
-                    <mat-form-field class="username" appearance="outline">
-                        <mat-label>Username</mat-label>
-                        <input matInput required>
+                    <mat-form-field class="email" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName = "email">
+                        <mat-error *ngIf="regFormControls['email']['errors']?.['required']">Email is required</mat-error>
+                        <mat-error *ngIf="regFormControls['email']['errors']?.['email']">Incorrect Email Format</mat-error>
                     </mat-form-field>
                 </div>
                 <small>You can use letters, numbers & periods</small>
                 <div class="user-input">
                     <mat-form-field appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input matInput required>
-                      </mat-form-field>
-                      <mat-form-field appearance="outline">
+                        <input matInput formControlName = "password">
+                        <mat-error *ngIf="regFormControls['password']['errors']?.['required']">Password is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label>Confirm</mat-label>
-                        <input matInput required>
+                        <input matInput formControlName = "confirm">
+                        <mat-error *ngIf="regFormControls['confirm']['errors']?.['required']">Confirm password is required</mat-error>
                     </mat-form-field>
                 </div>
                 <small>Use 8 or more characters with a mix of letters, numbers & symbols</small>
