@@ -15,15 +15,15 @@
                 <div class="user-input">
                     <mat-form-field appearance="outline">
                         <mat-label>First Name</mat-label>
-                        <input matInput formControlName = "firstName">
-                        <mat-error *ngIf="regFormControls['firstName']['errors']?.['required']">First Name is required</mat-error>
-                        <mat-error *ngIf="regFormControls['firstName']['errors']?.['minlength']">First Name must be at least 3 characters</mat-error>
+                        <input matInput formControlName = "firstname">
+                        <mat-error *ngIf="regFormControls['firstname']['errors']?.['required']">First Name is required</mat-error>
+                        <mat-error *ngIf="regFormControls['firstname']['errors']?.['minlength']">First Name must be at least 3 characters</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Last Name</mat-label>
-                        <input matInput formControlName = "lastName">
-                        <mat-error *ngIf="regFormControls['lastName']['errors']?.['required']">Last Name is required</mat-error>
-                        <mat-error *ngIf="regFormControls['lastName']['errors']?.['minlength']">Last Name must be at least 1 characters</mat-error>
+                        <input matInput formControlName = "lastname">
+                        <mat-error *ngIf="regFormControls['lastname']['errors']?.['required']">Last Name is required</mat-error>
+                        <mat-error *ngIf="regFormControls['lastname']['errors']?.['minlength']">Last Name must be at least 1 characters</mat-error>
                     </mat-form-field>
                 </div>
                 <div >
@@ -38,19 +38,19 @@
                 <div class="user-input">
                     <mat-form-field appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input matInput formControlName = "password">
+                        <input matInput formControlName = "password" type="password">
                         <mat-error *ngIf="regFormControls['password']['errors']?.['required']">Password is required</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Confirm</mat-label>
-                        <input matInput formControlName = "confirm">
+                        <input matInput formControlName = "confirm" type="password">
                         <mat-error *ngIf="regFormControls['confirm']['errors']?.['required']">Confirm password is required</mat-error>
                     </mat-form-field>
                 </div>
                 <small>Use 8 or more characters with a mix of letters, numbers & symbols</small>
                 <div class="links">
                     <a mat-button href="#" target="_blank">Sign in instead</a>
-                    <button mat-raised-button color="primary">Register</button>
+                    <button mat-raised-button color="primary"  (click) = "handleRegistration()">Register</button>
                 </div>
                 
             </form>

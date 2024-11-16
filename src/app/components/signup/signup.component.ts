@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpService } from 'src/app/services/http-service/http.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,13 +11,13 @@ export class SignupComponent {
 
   registerForm!: FormGroup
 
-  constructor(private formBuilder: FormBuilder){}
+  constructor(private formBuilder: FormBuilder, private httpService: HttpService){}
 
   ngOnInit(){
 
     this.registerForm = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.minLength(3)]],
-      lastName: ['', Validators.required, Validators.minLength(1)],
+      firstname: ['', [Validators.required, Validators.minLength(3)]],
+      lastname: ['', [Validators.required, Validators.minLength(1)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       confirm: ['', Validators.required]
@@ -25,5 +26,20 @@ export class SignupComponent {
   }
 
   get regFormControls() { return this.registerForm.controls; }
+
+  handleRegistration(){
+    if(this.registerForm.valid){
+      console.log('hai')
+      const { firstname, lastname, email, password } = this.registerForm.value
+      this.httpService.loginApiCall('/api/v1/users', {firstname, lastname, email, password}).subscribe({
+        next: (res) => {
+          console.log(res)
+        },
+        error: (err) => {
+          console.log(err)
+        }
+      })
+    }
+  }
 
 }
