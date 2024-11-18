@@ -1,0 +1,11 @@
+<div>
+    <button (click)="handleDrawerClick()" mat-icon-button aria-label="reminder button" matTooltip="Reminder">
+        <mat-icon svgIcon="menu-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
+    </button>
+</div>
+    <mat-drawer-container class="example-container" [hasBackdrop]="false">
+    <mat-drawer #drawer [mode]="'over'" [opened]="drawerState">I'm a drawer</mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+    </mat-drawer-container>

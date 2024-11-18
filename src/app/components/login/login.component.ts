@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http-service/http.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { HttpService } from 'src/app/services/http-service/http.service';
 export class LoginComponent {
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private httpService: HttpService, ) { }
+  constructor(private formBuilder: FormBuilder, private httpService: HttpService, private router: Router) { }
 
   ngOnInit() {
       this.loginForm = this.formBuilder.group({
@@ -28,6 +29,7 @@ export class LoginComponent {
       this.httpService.loginApiCall('/api/v1/users/login', {email, password}).subscribe({
         next: (res) => {
           console.log(res)
+          this.router.navigate(['/dashboard/notes'])
         },
         error: (err) => {
           console.log(err)
