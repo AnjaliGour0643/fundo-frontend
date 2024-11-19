@@ -1,4 +1,4 @@
-<app-add-note class="addnote"></app-add-note>
-<div >
-    <app-note-card></app-note-card>
+<app-add-note class="addnote" (updateList)="handleUpdateList($event)"></app-add-note>
+<div class='note'*ngFor="let note of notesList">
+    <app-note-card [noteDetails]="note" (updateList)="handleUpdateList($event)"></app-note-card>
 </div>

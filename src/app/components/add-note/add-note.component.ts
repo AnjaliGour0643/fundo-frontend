@@ -10,7 +10,12 @@ import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_
 })
 export class AddNoteComponent {
 
+  title: string = ''
+  description: string = ''
+
   addnote: boolean = true
+
+  @Output() updateList = new EventEmitter()
 
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
     iconRegistry.addSvgIconLiteral('reminder-icon', sanitizer.bypassSecurityTrustHtml(REMINDER_ICON));
@@ -24,8 +29,15 @@ export class AddNoteComponent {
     iconRegistry.addSvgIconLiteral('unarchive-icon', sanitizer.bypassSecurityTrustHtml(UNARCHIVE_ICON));
   }
 
-  addNoteToggle(){
+  addNoteToggle(action: string){
     this.addnote = !this.addnote
+    if(action==='save'){
+
+      //add the apicall
+      
+      console.log(this.title, this.description)
+      this.updateList.emit({data: this.title, action: 'add'})
+    }
   }
 
 }

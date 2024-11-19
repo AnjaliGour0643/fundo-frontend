@@ -1,16 +1,13 @@
 <div class='takenote' *ngIf="addnote else expandedNote"  >
-    <span (click)="addNoteToggle()">Take a note</span>
+    <span (click)="addNoteToggle('toggle')">Take a note</span>
 </div>
 <ng-template #expandedNote>
 <div class="input">
-    <input id="title" type="text" placeholder="Title">
-    <input type="text" placeholder="Take a note...">
+    <input id="title" type="text" placeholder="Title" [(ngModel)] = "title">
+    <input type="text" placeholder="Take a note..."  [(ngModel)] = "description">
     <div class="buttons">
         <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
             <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
-        </button>
-        <button mat-icon-button aria-label="collabrator button" matTooltip="Collabrator">
-            <mat-icon svgIcon="collabrator-icon" aria-hidden="false" aria-label="collabrator icon"></mat-icon>
         </button>
         <button mat-icon-button aria-label="color button" matTooltip="Background Color Options">
             <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon"></mat-icon>
@@ -18,8 +15,11 @@
         <button mat-icon-button aria-label="img button" matTooltip="Add Image">
             <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"></mat-icon>
         </button>
+        <button mat-icon-button aria-label="archive button" matTooltip="Archive">
+            <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="collabrator icon"></mat-icon>
+        </button>
     </div>
-    <button (click)="addNoteToggle()">close</button>
+    <button (click)="addNoteToggle('save')">close</button>
 </div>
 
 </ng-template>
