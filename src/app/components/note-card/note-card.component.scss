@@ -1,0 +1,20 @@
+.notecard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 120px;
+    width: 17%;
+    border: solid #ccc;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+}
+
+span{
+    text-align: center;
+    margin: 10px;
+}
