@@ -31,7 +31,7 @@ export class SignupComponent {
     if(this.registerForm.valid){
       console.log('hai')
       const { firstname, lastname, email, password } = this.registerForm.value
-      this.httpService.loginApiCall('/api/v1/users', {firstname, lastname, email, password}).subscribe({
+      this.httpService.postApiCall('/api/v1/users', {firstname, lastname, email, password}).subscribe({
         next: (res) => {
           console.log(res)
         },
