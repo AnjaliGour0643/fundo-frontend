@@ -1,4 +1,6 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/services/http-service/http.service';
 
 @Component({
   selector: 'app-notes-container',
@@ -9,11 +11,21 @@ export class NotesContainerComponent implements OnInit {
 
   notesList: any[] = []
 
-  ngOnInit() {
-
-    this.notesList = ['learning', 'typescript', 'angular']
+  constructor(private httpService: HttpService){
     
-    //call the api to fetch the data
+  }
+
+  ngOnInit() {
+    const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    this.httpService.getApiCall('/api/v1/notes/', header).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.notesList = res.notes.map((note: {title: string}) => note.title)
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
     
   }
 

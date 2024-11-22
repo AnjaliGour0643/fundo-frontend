@@ -11,4 +11,8 @@ export class HttpService {
     postApiCall<T>(endpoint: string, data: any, headers?: HttpHeaders) {
         return this.http.post<T>('http://localhost:3000' + endpoint, data, { headers });
     }
+
+    getApiCall<T>(endpoint: string, headers: HttpHeaders){
+        return this.http.get('http://localhost:3000'+endpoint, { headers })
+      }
 }
