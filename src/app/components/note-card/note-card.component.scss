@@ -1,20 +1,44 @@
-.notecard{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 120px;
-    width: 17%;
-    border: solid #ccc;
-    margin: 20px;
-    border-radius: 5px;
+.notecard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 150px; 
+  width: 200px;
+  border: solid #ccc;
+  margin: 20px;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  transition: box-shadow 0.3s ease;
 }
 
-.buttons{
-    display: flex;
-    justify-content: center;
+.notecard:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-span{
-    text-align: center;
-    margin: 10px;
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: bold; 
+  color: #333;       
+  margin-bottom: 5px;
+  word-wrap: break-word;
+}
+
+.buttons {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.notecard:hover .buttons {
+  display: flex;
 }

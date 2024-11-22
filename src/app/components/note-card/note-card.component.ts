@@ -10,7 +10,7 @@ import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_
 })
 export class NoteCardComponent {
 
-  @Input() noteDetails:string = ''
+  @Input() noteDetails: { title: string; description: string } = { title: '', description: '' };
 
   @Output() updateList = new EventEmitter
 
