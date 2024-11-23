@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 150px; 
+  height: auto; 
+  min-height: 100px; 
   width: 200px;
   border: solid #ccc;
   margin: 20px;
@@ -21,20 +22,32 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 40px;
 }
 
 .title {
-  font-weight: bold; 
-  color: #333;       
+  font-weight: 500;
+  color: #020202;
   margin-bottom: 5px;
   word-wrap: break-word;
+}
+
+.description {
+  color: #1c1c1c;
+  font-size: 13px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  margin-bottom: 20px;
 }
 
 .buttons {
   display: none;
   position: absolute;
   bottom: 10px;
+  left: 0;
+  right: 0;
   width: 100%;
   justify-content: space-around;
 }
@@ -42,3 +55,4 @@
 .notecard:hover .buttons {
   display: flex;
 }
+
