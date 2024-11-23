@@ -1,25 +1,24 @@
-<div class='takenote' *ngIf="addnote else expandedNote"  >
-    <span (click)="addNoteToggle('toggle')">Take a note</span>
+<div class="takenote" *ngIf="addnote else expandedNote">
+  <span (click)="addNoteToggle('toggle')">Take a note...</span>
 </div>
 <ng-template #expandedNote>
-<div class="input">
+  <div class="input">
     <input id="title" type="text" placeholder="Title" [(ngModel)] = "title">
     <input type="text" placeholder="Take a note..."  [(ngModel)] = "description">
     <div class="buttons">
-        <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
-            <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
-        </button>
-        <button mat-icon-button aria-label="color button" matTooltip="Background Color Options">
-            <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon"></mat-icon>
-        </button>
-        <button mat-icon-button aria-label="img button" matTooltip="Add Image">
-            <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"></mat-icon>
-        </button>
-        <button mat-icon-button aria-label="archive button" matTooltip="Archive">
-            <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="collabrator icon"></mat-icon>
-        </button>
+      <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
+        <mat-icon svgIcon="reminder-icon"></mat-icon>
+      </button>
+      <button mat-icon-button aria-label="color button" matTooltip="Background Color Options">
+        <mat-icon svgIcon="color-palatte-icon"></mat-icon>
+      </button>
+      <button mat-icon-button aria-label="img button" matTooltip="Add Image">
+        <mat-icon svgIcon="img-icon"></mat-icon>
+      </button>
+      <button mat-icon-button aria-label="archive button" matTooltip="Archive">
+        <mat-icon svgIcon="archive-icon"></mat-icon>
+      </button>
     </div>
-    <button (click)="addNoteToggle('save')">close</button>
-</div>
-
+    <button mat-button class="close-button" (click)="addNoteToggle('save')">Close</button>
+  </div>
 </ng-template>

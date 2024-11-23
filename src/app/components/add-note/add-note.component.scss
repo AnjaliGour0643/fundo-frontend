@@ -1,39 +1,68 @@
-.takenote{
+.takenote {
     display: flex;
     height: 50px;
     width: 30%;
-    border-radius: 10px;
+    border-radius: 8px;
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
 }
-
-span{
+  
+.takenote:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+  
+span {
     margin: 20px;
+    font-size: 14px;
+    color: #555;
 }
-
-.input{
-    background-color: white;
+  
+.input {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: 130px;
+    justify-content: space-between;
     width: 35%;
-    border-radius: 10px;
+    border-radius: 8px;
+    padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
-
-input{
+  
+input {
     margin: 10px 20px 0px 20px;
-    width: 95%;
+    border: 0;
+    padding: 5px;
+    background-color: transparent;
+    color: #333;
     box-sizing: border-box;
-    border: 0px;
 }
-
-.buttons{
-    margin: 10px opx 0px 0px;
+  
+#title {
+    font-size: 16px;
+    font-weight: 500;
 }
-
-#title{
-    font-size: large;
+  
+.description-input {
+    font-size: 13px;
+    color: #666;
+    resize: none;
 }
+  
+.buttons {
+    position: absolute;
+    bottom: 10px;
+}
+  
+.buttons button {
+    cursor: pointer;
+}
+  
+.close-button {
+    align-self: flex-end;
+    margin-top: 10px;
+    cursor: pointer;
+}
+  
