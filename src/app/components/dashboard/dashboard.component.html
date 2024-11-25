@@ -1,4 +1,59 @@
-<div>
+<div class="dashboard-container">
+    <!-- Header Section -->
+    <div class="header">
+      <button class="menu-button" (click)="handleDrawerClick()" mat-icon-button>
+        <mat-icon svgIcon="menu-icon"></mat-icon>
+      </button>
+      <div class="header-logo">
+        <img class="logo-icon" src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="Fundo">
+        <span class="logo-text">Fundoonotes</span>
+      </div>
+      <div class="search-container">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input type="text" placeholder="Search" class="search-box">
+      </div>
+      <div class="header-actions">
+        <button mat-icon-button class="action-button">
+          <mat-icon>refresh</mat-icon>
+        </button>
+        <button mat-icon-button class="action-button">
+          <mat-icon>view_list</mat-icon>
+        </button>
+        <button mat-icon-button class="action-button">
+          <mat-icon>settings</mat-icon>
+        </button>
+        <button mat-icon-button class="action-button">
+          <img class="profile-icon" src="https://via.placeholder.com/32" alt="Profile">
+        </button>
+      </div>
+    </div>
+  
+    <!-- Drawer Container -->
+    <mat-drawer-container class="drawer-container">
+      <mat-drawer #drawer class="drawer" [mode]="'over'" [opened]="drawerState">
+        <ul class="drawer-list">
+          <li class="drawer-item">Notes</li>
+          <li class="drawer-item">Archive</li>
+          <li class="drawer-item">Trash</li>
+        </ul>
+      </mat-drawer>
+  
+      <!-- Router Outlet -->
+      <mat-drawer-content>
+        <router-outlet></router-outlet>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </div>
+  
+  
+  
+  
+  
+
+
+
+
+<!-- <div>
     <button (click)="handleDrawerClick()" mat-icon-button aria-label="reminder button" matTooltip="Reminder">
         <mat-icon svgIcon="menu-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
     </button>
@@ -8,4 +63,4 @@
     <mat-drawer-content>
         <router-outlet></router-outlet>
     </mat-drawer-content>
-    </mat-drawer-container>
+    </mat-drawer-container> -->
