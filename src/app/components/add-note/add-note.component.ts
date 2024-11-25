@@ -32,28 +32,30 @@ export class AddNoteComponent {
   }
 
   addNoteToggle(action: string){
-    let _id;
-    let title = this.title;
-    let description = this.description;
+    // let _id;
+    let title = this.title.trim();
+    let description = this.description.trim();
     let color = 'white';
 
     this.addnote = !this.addnote
 
-    const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-
-    if(action==='save'){
+    if(action==='save' && (title || description)){
+      const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+      
       this.httpService.postApiCall('/api/v1/notes', {title, description, color}, header).subscribe({
         next: (res: any) => {
-          _id = res.data._id;
+          const _id = res.data._id;
           console.log(res)
+          this.updateList.emit({ title, description, _id, action: 'add' });
         },
         error: (err) => {
           console.log(err)
         }
       })
-      console.log(this.title, this.description)
-      this.updateList.emit({title: this.title, description:this.description, _id:_id, action: 'add'})
     }
+    // Reset the input fields
+    this.title = '';
+    this.description = '';
   }
 
 }
