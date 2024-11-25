@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { ArchiveContainerComponent } from './components/archive-container/archiv
 import { TrashContainerComponent } from './components/trash-container/trash-container.component';
 import { NoteCardComponent } from './components/note-card/note-card.component';
 import { AddNoteComponent } from './components/add-note/add-note.component';
+import { UpdateNoteComponent } from './components/update-note/update-note.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { AddNoteComponent } from './components/add-note/add-note.component';
     TrashContainerComponent,
     NoteCardComponent,
     AddNoteComponent,
+    UpdateNoteComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { AddNoteComponent } from './components/add-note/add-note.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatSidenavModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

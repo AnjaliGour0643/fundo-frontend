@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-content">
+      <input type="text" class="input-field" placeholder="Title" [(ngModel)]="title">
+      <input type="text" class="input-field" placeholder="Description" [(ngModel)]="description">
+    </div>
+    <div class="card-footer">
+      <div class="action-buttons">
+        <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
+            <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
+        </button>
+        <button mat-icon-button aria-label="color button" matTooltip="Background Color Options">
+            <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon"></mat-icon>
+        </button>
+        <button mat-icon-button aria-label="img button" matTooltip="Add Image">
+            <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"></mat-icon>
+        </button>
+        <button mat-icon-button aria-label="archive button" matTooltip="Archive">
+            <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon"></mat-icon>
+        </button>
+        <button mat-icon-button aria-label="More Options button" matTooltip="More Options">
+          <mat-icon svgIcon="more-icon" aria-hidden="false"></mat-icon>
+        </button>
+      </div>
+      <div class="edit-buttons">
+        <button mat-icon-button aria-label="Undo button" matTooltip="Undo">
+          <mat-icon>undo</mat-icon>
+        </button>
+        <button mat-icon-button aria-label="Redo button" matTooltip="Redo">
+          <mat-icon>redo</mat-icon>
+        </button>
+        <button mat-button class="close-button" (click)="onNoClick()">Close</button>
+      </div>
+    </div>
+</div>
+  

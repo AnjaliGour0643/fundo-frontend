@@ -1,6 +1,8 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http-service/http.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateNoteComponent } from '../update-note/update-note.component';
 
 @Component({
   selector: 'app-notes-container',
@@ -8,9 +10,9 @@ import { HttpService } from 'src/app/services/http-service/http.service';
   styleUrls: ['./notes-container.component.scss']
 })
 export class NotesContainerComponent implements OnInit {
-  notesList: Array<{ title: string; description: string }> = []; // Ensure title & description are included.
-
-  constructor(private httpService: HttpService) {}
+  notesList: Array<{ title: string; description: string, _id: string }> = []; // Ensure title & description are included.
+  // notesList: any[] = [];
+  constructor(private httpService: HttpService, public dialog: MatDialog) {}
 
   ngOnInit() {
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
@@ -20,9 +22,10 @@ export class NotesContainerComponent implements OnInit {
         console.log(res);
 
         // Map the response to include both title and description.
-        this.notesList = res.notes.map((note: { title: string; description: string }) => ({
-          title: note.title || 'Untitled',
-          description: note.description || 'No description available',
+        this.notesList = res.notes.map((note: { title: string; description: string, _id:string }) => ({
+          title: note.title,
+          description: note.description,
+          _id :note._id
         }));
       },
       error: (err) => {
@@ -32,12 +35,24 @@ export class NotesContainerComponent implements OnInit {
   }
 
   handleUpdateList($event: any) {
-    const { data, action } = $event;
+    let {title, description, _id, action} = $event
 
     if (action === 'add') {
-      this.notesList.push(data);
+      this.notesList.push({title, description, _id: ''});
     } else if (action === 'archive') {
-      this.notesList = this.notesList.filter((element) => element !== data);
+      this.notesList = this.notesList.filter((element) => element._id != _id);
     }
+  }
+
+  editNotesDialog(note: any){
+    let dialogRef = this.dialog.open(UpdateNoteComponent, {
+      height: 'auto',
+      width: '600px',
+      data: note
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('closed');
+    });
   }
 }
