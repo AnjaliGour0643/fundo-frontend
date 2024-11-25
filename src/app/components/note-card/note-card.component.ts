@@ -26,7 +26,7 @@ export class NoteCardComponent {
     iconRegistry.addSvgIconLiteral('unarchive-icon', sanitizer.bypassSecurityTrustHtml(UNARCHIVE_ICON));
   }
 
-  handleNoteIconsClick(action: string){
-    this.updateList.emit({data: this.noteDetails, action})
+  handleNoteIconsClick(action: string) {
+    this.updateList.emit({ ...this.noteDetails, action });
   }
 }
