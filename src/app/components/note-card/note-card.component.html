@@ -18,7 +18,7 @@
         </button>
         <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" aria-label="more button" matTooltip="More" (click)="$event.stopPropagation()">
             <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="more icon"></mat-icon>
-            <mat-menu #menu="matMenu">
+            <mat-menu #menu="matMenu" xPosition="before">
                 <button mat-menu-item (click)="handleNoteIconsClick('delete')">Delete note</button>
                 <button mat-menu-item (click)="handleNoteIconsClick('copy')">Make a copy</button>
             </mat-menu>

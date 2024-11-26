@@ -14,7 +14,7 @@ export class NoteCardComponent {
 
   @Input() noteDetails: { title: string; description: string; _id: string } = {title: '', description: '', _id: ''};
   isHovering = false;
-  
+
   @Output() updateList = new EventEmitter
 
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private dialog: MatDialog) {
@@ -41,10 +41,8 @@ export class NoteCardComponent {
       data: this.noteDetails,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.updateList.emit({ ...this.noteDetails, ...result, action: 'update' });
-      }
+    dialogRef.afterClosed().subscribe(result => {
+      this.noteDetails = {...result, _id: this.noteDetails._id}
     });
   }
 

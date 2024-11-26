@@ -19,11 +19,11 @@ export class UpdateNoteComponent{
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     this.httpService.putApiCall(`/api/v1/notes/${this.data._id}`, {title:this.title, description:this.description}, header).subscribe({
       next: (res: any) => {
         console.log(res)
+        this.dialogRef.close({ title: this.title, description: this.description });
       },
       error: (err) => {
         console.log(err)
