@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { MENU_ICON } from 'src/assets/svg-icons';
 
 @Component({
@@ -10,45 +11,16 @@ import { MENU_ICON } from 'src/assets/svg-icons';
 })
 export class DashboardComponent {
   drawerState: boolean = false;
-  selectedSection: string = 'notes';
-  router: any;
 
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router) {
     iconRegistry.addSvgIconLiteral('menu-icon', sanitizer.bypassSecurityTrustHtml(MENU_ICON));
   }
 
-  handleDrawerClick() {
+  handleDrawerClick(): void {
     this.drawerState = !this.drawerState;
   }
 
-  navigateToSection(section: string) {
-    this.selectedSection = section;
-    this.router.navigate([`/dashboard/${section}`]); // Navigate to the respective child route
+  navigateTo(route: string): void {
+    this.router.navigate(['/dashboard', route]);
   }
 }
-
-
-
-
-
-// import { Component } from '@angular/core';
-// import { MatIconRegistry } from '@angular/material/icon';
-// import { DomSanitizer } from '@angular/platform-browser';
-// import { MENU_ICON } from 'src/assets/svg-icons';
-
-// @Component({
-//   selector: 'app-dashboard',
-//   templateUrl: './dashboard.component.html',
-//   styleUrls: ['./dashboard.component.scss']
-// })
-
-// export class DashboardComponent {
-//   drawerState: boolean = false
-  
-//   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
-//     iconRegistry.addSvgIconLiteral('menu-icon', sanitizer.bypassSecurityTrustHtml(MENU_ICON));
-//   }
-//   handleDrawerClick(){
-//     this.drawerState = !this.drawerState
-//   }
-// }

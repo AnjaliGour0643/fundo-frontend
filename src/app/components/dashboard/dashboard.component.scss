@@ -97,14 +97,23 @@
 }
   
 .drawer-item {
+    display: flex;
+    align-items: center;
     padding: 15px 20px;
     font-size: 1.2rem;
+    text-decoration: none;
+    color: #202124;
     cursor: pointer;
     border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s ease;
 }
   
 .drawer-item:hover {
     background-color: #f0f0f0;
 }
   
+.drawer-item mat-icon {
+    margin-right: 20px;
+}
+
   

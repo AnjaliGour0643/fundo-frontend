@@ -1,5 +1,4 @@
 <div class="dashboard-container">
-    <!-- Header Section -->
     <div class="header">
       <button class="menu-button" (click)="handleDrawerClick()" mat-icon-button>
         <mat-icon svgIcon="menu-icon"></mat-icon>
@@ -23,44 +22,33 @@
           <mat-icon>settings</mat-icon>
         </button>
         <button mat-icon-button class="action-button">
-          <img class="profile-icon" src="https://via.placeholder.com/32" alt="Profile">
+          <img class="profile-icon"  alt="Profile">
         </button>
       </div>
     </div>
   
-    <!-- Drawer Container -->
     <mat-drawer-container class="drawer-container">
-      <mat-drawer #drawer class="drawer" [mode]="'over'" [opened]="drawerState">
-        <ul class="drawer-list">
-          <li class="drawer-item">Notes</li>
-          <li class="drawer-item">Archive</li>
-          <li class="drawer-item">Trash</li>
-        </ul>
-      </mat-drawer>
+        <mat-drawer #drawer class="drawer" [mode]="'over'" [opened]="drawerState">
+            <mat-nav-list>
+              <a mat-list-item class="drawer-item" routerLink="/dashboard/notes" routerLinkActive="active-link">
+                <mat-icon mat-list-icon>lightbulb_outline</mat-icon>
+                Notes
+              </a>
+              <a mat-list-item class="drawer-item" routerLink="/dashboard/archive" routerLinkActive="active-link">
+                <mat-icon mat-list-icon>archive</mat-icon>
+                Archive
+              </a>
+              <a mat-list-item class="drawer-item" routerLink="/dashboard/trash" routerLinkActive="active-link">
+                <mat-icon mat-list-icon>delete_outline</mat-icon>
+                Trash
+              </a>
+            </mat-nav-list>
+          </mat-drawer>
   
-      <!-- Router Outlet -->
-      <mat-drawer-content>
-        <router-outlet></router-outlet>
-      </mat-drawer-content>
+        <mat-drawer-content>
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+        
     </mat-drawer-container>
   </div>
   
-  
-  
-  
-  
-
-
-
-
-<!-- <div>
-    <button (click)="handleDrawerClick()" mat-icon-button aria-label="reminder button" matTooltip="Reminder">
-        <mat-icon svgIcon="menu-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
-    </button>
-</div>
-    <mat-drawer-container class="example-container" [hasBackdrop]="false">
-    <mat-drawer #drawer [mode]="'over'" [opened]="drawerState">I'm a drawer</mat-drawer>
-    <mat-drawer-content>
-        <router-outlet></router-outlet>
-    </mat-drawer-content>
-    </mat-drawer-container> -->
