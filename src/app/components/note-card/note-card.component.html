@@ -1,20 +1,31 @@
-<div class="notecard">
+<div class="notecard" (click)="editNoteDialog()">
     <div class="content">
         <div class="title">{{noteDetails.title}}</div>
         <div class="description">{{noteDetails.description}}</div>
     </div>
     <div class="buttons">
-        <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
+        <button mat-icon-button aria-label="reminder button" matTooltip="Reminder" (click)="$event.stopPropagation()">
             <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
         </button>
-        <button mat-icon-button aria-label="color button" matTooltip="Background Color Options">
+        <button mat-icon-button aria-label="color button" matTooltip="Background Color Options" (click)="$event.stopPropagation()">
             <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon"></mat-icon>
         </button>
-        <button mat-icon-button aria-label="img button" matTooltip="Add Image">
+        <button mat-icon-button aria-label="img button" matTooltip="Add Image" (click)="$event.stopPropagation()">
             <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"></mat-icon>
         </button>
         <button mat-icon-button aria-label="archive button" matTooltip="Archive" (click)="handleNoteIconsClick('archive')">
             <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon"></mat-icon>
         </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="more button" matTooltip="More" (click)="$event.stopPropagation()">
+            <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="more icon"></mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="handleNoteIconsClick('delete')">
+              <span>Delete note</span>
+            </button>
+            <button mat-menu-item (click)="handleNoteIconsClick('copy')">
+              <span>Make a copy</span>
+            </button>
+          </mat-menu>
     </div>
 </div>

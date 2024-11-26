@@ -13,12 +13,7 @@ export class UpdateNoteComponent{
   title: any = '';
   description: any = ''
 
-  constructor(
-    public httpService:HttpService,
-    public dialogRef: MatDialogRef<UpdateNoteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
-    console.log(data)
+  constructor(public httpService:HttpService, public dialogRef: MatDialogRef<UpdateNoteComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.title = data.title
     this.description = data.description
   }

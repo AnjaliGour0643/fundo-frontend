@@ -11,6 +11,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,7 +56,8 @@ import { UpdateNoteComponent } from './components/update-note/update-note.compon
     MatTooltipModule,
     MatButtonToggleModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

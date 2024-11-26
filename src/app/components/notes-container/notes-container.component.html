@@ -1,6 +1,6 @@
 <app-add-note class="addnote" (updateList)="handleUpdateList($event)"></app-add-note>
 <div class='note'>
     <div *ngFor="let note of notesList">
-        <app-note-card [noteDetails]="note" (updateList)="handleUpdateList($event)" (click)="editNotesDialog(note)"></app-note-card>
+        <app-note-card [noteDetails]="note" (updateList)="handleUpdateList($event)"></app-note-card>
     </div>
 </div>
