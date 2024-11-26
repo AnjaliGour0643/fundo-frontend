@@ -13,6 +13,7 @@ import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_
 export class NoteCardComponent {
 
   @Input() noteDetails: { title: string; description: string; _id: string } = {title: '', description: '', _id: ''};
+  isHovering = false;
   
   @Output() updateList = new EventEmitter
 

@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: auto; 
-  min-height: 100px; 
+  height: auto;
+  min-height: 100px;
   width: 250px;
   border: solid #ccc;
   margin: 20px;
@@ -52,7 +52,7 @@
   justify-content: space-around;
 }
 
-.notecard:hover .buttons {
+.notecard:hover .buttons,
+.buttons.show-buttons {
   display: flex;
 }
-

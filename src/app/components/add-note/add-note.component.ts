@@ -11,6 +11,7 @@ import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_
   styleUrls: ['./add-note.component.scss']
 })
 export class AddNoteComponent {
+  isHovering = false;
 
   title: string = ''
   description: string = ''

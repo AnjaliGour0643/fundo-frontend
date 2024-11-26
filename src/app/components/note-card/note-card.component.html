@@ -3,7 +3,7 @@
         <div class="title">{{noteDetails.title}}</div>
         <div class="description">{{noteDetails.description}}</div>
     </div>
-    <div class="buttons">
+    <div class="buttons" [class.show-buttons]="menuTrigger.menuOpen || isHovering" (mouseenter)="isHovering = true" (mouseleave)="isHovering = false">
         <button mat-icon-button aria-label="reminder button" matTooltip="Reminder" (click)="$event.stopPropagation()">
             <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
         </button>
@@ -16,16 +16,12 @@
         <button mat-icon-button aria-label="archive button" matTooltip="Archive" (click)="handleNoteIconsClick('archive')">
             <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon"></mat-icon>
         </button>
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="more button" matTooltip="More" (click)="$event.stopPropagation()">
+        <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" aria-label="more button" matTooltip="More" (click)="$event.stopPropagation()">
             <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="more icon"></mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="handleNoteIconsClick('delete')">
-              <span>Delete note</span>
-            </button>
-            <button mat-menu-item (click)="handleNoteIconsClick('copy')">
-              <span>Make a copy</span>
-            </button>
-          </mat-menu>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="handleNoteIconsClick('delete')">Delete note</button>
+                <button mat-menu-item (click)="handleNoteIconsClick('copy')">Make a copy</button>
+            </mat-menu>
+        </button>
     </div>
 </div>

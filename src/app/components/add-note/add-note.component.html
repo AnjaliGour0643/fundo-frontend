@@ -5,7 +5,7 @@
   <div class="input">
     <input id="title" type="text" placeholder="Title" [(ngModel)] = "title">
     <input type="text" placeholder="Take a note..."  [(ngModel)] = "description">
-    <div class="buttons">
+    <div class="buttons" [class.show-buttons]="menuTrigger.menuOpen || isHovering" (mouseenter)="isHovering = true" (mouseleave)="isHovering = false">
       <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
         <mat-icon svgIcon="reminder-icon"></mat-icon>
       </button>
@@ -18,6 +18,13 @@
       <button mat-icon-button aria-label="archive button" matTooltip="Archive">
         <mat-icon svgIcon="archive-icon"></mat-icon>
       </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" aria-label="more button" matTooltip="More" (click)="$event.stopPropagation()">
+        <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="more icon"></mat-icon>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>Delete note</button>
+            <button mat-menu-item>Make a copy</button>
+        </mat-menu>
+    </button>
     </div>
     <button mat-button class="close-button" (click)="addNoteToggle('save')">Close</button>
   </div>
