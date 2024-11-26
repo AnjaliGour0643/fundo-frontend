@@ -33,14 +33,13 @@ export class AddNoteComponent {
   }
 
   addNoteToggle(action: string){
-    // let _id;
     let title = this.title.trim();
     let description = this.description.trim();
     let color = 'white';
 
     this.addnote = !this.addnote
 
-    if(action==='save' && (title || description)){
+    if(action==='save' && (title && description)){
       const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
       
       this.httpService.postApiCall('/api/v1/notes', {title, description, color}, header).subscribe({
