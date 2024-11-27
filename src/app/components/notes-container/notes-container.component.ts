@@ -20,7 +20,7 @@ export class NotesContainerComponent implements OnInit {
         console.log(res);
 
         this.notesList = res.notes
-          .filter((note: { isArchive: boolean}) => !note.isArchive)
+          .filter((note: { isArchive: boolean; isTrash: boolean }) => !note.isArchive && !note.isTrash)
           .map((note: { title: string; description: string; _id: string }) => ({
             title: note.title,
             description: note.description,
@@ -39,7 +39,7 @@ export class NotesContainerComponent implements OnInit {
   
     if (action === 'add') {
       this.notesList.push({ title, description, _id });
-    } else if (action === 'archive') {
+    } else if (action === 'archive' || action === 'trash') {
       this.notesList = this.notesList.filter((note) => note._id !== _id);
     }
   }
