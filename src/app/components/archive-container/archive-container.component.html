@@ -1,5 +1,7 @@
-<div class="notescontainer">
-    <div *ngFor="let note of archiveList">
-        <app-note-card class="notecard" [noteDetails]="note"></app-note-card>
-    </div>
+<p>archive container works!</p>
+
+<div class="archivecontainer">
+  <div *ngFor="let note of archiveList">
+    <app-note-card class="notecard" [noteDetails]="note" (updateList)="handleUpdate()"></app-note-card>
+  </div>
 </div>

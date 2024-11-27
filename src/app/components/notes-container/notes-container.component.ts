@@ -37,7 +37,7 @@ export class NotesContainerComponent implements OnInit {
   
     if (action === 'add') {
       this.notesList.push({ title, description, _id });
-    } else if (action === 'archive' || action === 'trash') {
+    } else if (action === 'archive') {
       this.notesList = this.notesList.filter((note) => note._id !== _id);
     }
   }

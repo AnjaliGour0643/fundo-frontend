@@ -8,20 +8,28 @@ import { HttpService } from 'src/app/services/http-service/http.service';
   styleUrls: ['./archive-container.component.scss']
 })
 export class ArchiveContainerComponent {
-  archiveList: any[] = []; 
-  constructor(public httpService: HttpService){}
+  archiveList: any[] = [];
+
+  constructor(public httpService: HttpService) {}
+
   ngOnInit() {
+    this.fetchArchivedNotes();
+  }
+
+  fetchArchivedNotes() {
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     this.httpService.getApiCall('/api/v1/notes', header).subscribe({
       next: (res: any) => {
-        let list = res.notes.map((note: {title: string, description:string, _id:string , isArchive:boolean}) => ({title:note.title, description:note.description, _id:note._id, isArchive: note.isArchive}))
-        this.archiveList = list.filter((note: any) => note.isArchive === true)
-        console.log(this.archiveList)
+        let list = res.notes.map((note: { title: string; description: string; _id: string; isArchive: boolean }) => ({
+          title: note.title, description: note.description, id: note._id, isArchive: note.isArchive}));
+        this.archiveList = list.filter((note: any) => note.isArchive === true);
+        console.log(this.archiveList);
       },
-      error: (err) => {
-        console.log(err)
-      }
-    })
-    
+      error: (err) => console.error(err),
+    });
+  }
+
+  handleUpdate() {
+    this.fetchArchivedNotes();
   }
 }

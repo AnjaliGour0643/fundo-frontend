@@ -4,6 +4,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateNoteComponent } from '../update-note/update-note.component';
 import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_ICON, MORE_ICON, DELETE_FOREVER_ICON, RESTORE_ICON, UNARCHIVE_ICON, TRASH_ICON } from 'src/assets/svg-icons';
+import { HttpService } from 'src/app/services/http-service/http.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-note-card',
@@ -17,7 +19,7 @@ export class NoteCardComponent {
 
   @Output() updateList = new EventEmitter
 
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private dialog: MatDialog) {
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private dialog: MatDialog, private httpService: HttpService) {
     iconRegistry.addSvgIconLiteral('reminder-icon', sanitizer.bypassSecurityTrustHtml(REMINDER_ICON));
     iconRegistry.addSvgIconLiteral('collabrator-icon', sanitizer.bypassSecurityTrustHtml(COLLABRATOR_ICON));
     iconRegistry.addSvgIconLiteral('color-palatte-icon', sanitizer.bypassSecurityTrustHtml(COLOR_PALATTE_ICON));
@@ -31,7 +33,16 @@ export class NoteCardComponent {
   }
 
   handleNoteIconsClick(action: string) {
-    this.updateList.emit({ ...this.noteDetails, action });
+    if (action === 'archive') {
+      const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+      this.httpService.putApiCall(`/api/v1/notes/${this.noteDetails._id}/archive`, {}, header).subscribe({
+        next: (res: any) => {
+          console.log('Archive status toggled:', res);
+          this.updateList.emit({ _id: this.noteDetails._id, action: 'archive' });
+        },
+        error: (err) => console.error('Error archiving note:', err),
+      });
+    }
   }
 
   editNoteDialog() {
