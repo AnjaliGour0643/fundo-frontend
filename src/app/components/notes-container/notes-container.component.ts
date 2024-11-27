@@ -9,7 +9,7 @@ import { HttpService } from 'src/app/services/http-service/http.service';
 })
 export class NotesContainerComponent implements OnInit {
   notesList: Array<{ title: string; description: string, _id: string }> = [];
-  // notesList: any[] = [];
+
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {
@@ -19,11 +19,13 @@ export class NotesContainerComponent implements OnInit {
       next: (res: any) => {
         console.log(res);
 
-        this.notesList = res.notes.map((note: { title: string; description: string, _id:string }) => ({
-          title: note.title,
-          description: note.description,
-          _id :note._id
-        }));
+        this.notesList = res.notes
+          .filter((note: { isArchive: boolean}) => !note.isArchive)
+          .map((note: { title: string; description: string; _id: string }) => ({
+            title: note.title,
+            description: note.description,
+            _id: note._id,
+          }));
       },
       error: (err) => {
         console.log(err);
