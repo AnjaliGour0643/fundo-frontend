@@ -19,8 +19,5 @@ export class DashboardComponent {
   handleDrawerClick(): void {
     this.drawerState = !this.drawerState;
   }
-
-  navigateTo(route: string): void {
-    this.router.navigate(['/dashboard', route]);
-  }
+  
 }
