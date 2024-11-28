@@ -26,6 +26,7 @@ import { TrashContainerComponent } from './components/trash-container/trash-cont
 import { NoteCardComponent } from './components/note-card/note-card.component';
 import { AddNoteComponent } from './components/add-note/add-note.component';
 import { UpdateNoteComponent } from './components/update-note/update-note.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { UpdateNoteComponent } from './components/update-note/update-note.compon
     NoteCardComponent,
     AddNoteComponent,
     UpdateNoteComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

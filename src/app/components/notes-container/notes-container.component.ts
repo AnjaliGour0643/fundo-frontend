@@ -1,5 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/dataService/data.service';
 import { HttpService } from 'src/app/services/http-service/http.service';
 
 @Component({
@@ -9,8 +10,9 @@ import { HttpService } from 'src/app/services/http-service/http.service';
 })
 export class NotesContainerComponent implements OnInit {
   notesList: Array<{ title: string; description: string, _id: string }> = [];
+  filterNote: string = '';
 
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService, private dataService: DataService) {}
 
   ngOnInit() {
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
@@ -31,6 +33,12 @@ export class NotesContainerComponent implements OnInit {
         console.log(err);
       },
     });
+
+    this.dataService.incomingSearchText.subscribe((text) => {
+      console.log('Current search text:', text); 
+      this.filterNote = text; 
+    });
+
   }
 
 
