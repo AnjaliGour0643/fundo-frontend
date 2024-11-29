@@ -1,4 +1,7 @@
 <div class="notecard" (click)="editNoteDialog()">
+    <button class="pin-icon" mat-icon-button matTooltip="Pin note" (click)="$event.stopPropagation()">
+        <mat-icon svgIcon="pin-icon"></mat-icon>
+    </button>
     <div class="content">
         <div class="title">{{noteDetails.title}}</div>
         <div class="description">{{noteDetails.description}}</div>
@@ -8,10 +11,10 @@
             <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
                 <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
             </button>
-            <button mat-icon-button aria-label="color button" matTooltip="Background Color Options">
+            <button mat-icon-button aria-label="color button" matTooltip="Background color options">
                 <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon"></mat-icon>
             </button>
-            <button mat-icon-button aria-label="img button" matTooltip="Add Image">
+            <button mat-icon-button aria-label="img button" matTooltip="Add image">
                 <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"></mat-icon>
             </button>
             <button mat-icon-button aria-label="archive button" matTooltip="Archive" (click)="handleNoteIconsClick('archive'); $event.stopPropagation()">

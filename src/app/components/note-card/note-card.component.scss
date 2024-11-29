@@ -9,17 +9,19 @@
   margin: 20px;
   border-radius: 5px;
   position: relative;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
-  transition: box-shadow 0.3s ease;
-}
 
-.notecard:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+  }
+
+  &:hover .pin-icon {
+    opacity: 1;
+  }
 }
 
 .content {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -43,16 +45,34 @@
 }
 
 .buttons {
-  display: none;
+  opacity: 0;
   position: absolute;
   bottom: 10px;
   left: 0;
   right: 0;
   width: 100%;
+  display: flex;
+  align-items: center;
   justify-content: space-around;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    pointer-events: auto;
+  }
 }
 
 .notecard:hover .buttons,
 .buttons.show-buttons {
-  display: flex;
+  opacity: 1;
+}
+
+.pin-icon {
+  position: absolute;
+  top: 1px;
+  right: 2px;
+  background-color: transparent;
+  color: #5f6368;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: scale(0.9);
 }
