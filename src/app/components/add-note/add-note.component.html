@@ -1,31 +1,50 @@
-<div class="takenote" *ngIf="addnote else expandedNote">
-  <span (click)="addNoteToggle('toggle')">Take a note...</span>
+<div class="takenote" *ngIf="addnote else expandedNote" (click)="addNoteToggle('toggle')">
+  <span>Take a note...</span>
+  <div class="icons">
+    <button mat-icon-button matTooltip="New list">
+      <mat-icon svgIcon="tick-icon"></mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="New note with drawing">
+      <mat-icon svgIcon="brush-icon"></mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="New note with image">
+      <mat-icon svgIcon="img-icon"></mat-icon>
+    </button>
+  </div>
 </div>
+
 <ng-template #expandedNote>
   <div class="input">
-    <input id="title" type="text" placeholder="Title" [(ngModel)] = "title">
-    <input type="text" placeholder="Take a note..."  [(ngModel)] = "description">
-    <div class="buttons" [class.show-buttons]="menuTrigger.menuOpen || isHovering" (mouseenter)="isHovering = true" (mouseleave)="isHovering = false">
-      <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
+    <button class="pin-icon" mat-icon-button matTooltip="Pin note">
+      <mat-icon svgIcon="pin-icon"></mat-icon>
+    </button>
+    <input id="title" type="text" placeholder="Title" [(ngModel)]="title">
+    <input id="description" type="text" placeholder="Take a note..." [(ngModel)]="description">
+    <div class="buttons">
+      <button mat-icon-button matTooltip="Remind me">
         <mat-icon svgIcon="reminder-icon"></mat-icon>
       </button>
-      <button mat-icon-button aria-label="color button" matTooltip="Background Color Options">
+      <button mat-icon-button matTooltip="Collaborator">
+        <mat-icon svgIcon="collabrator-icon"></mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Background options">
         <mat-icon svgIcon="color-palatte-icon"></mat-icon>
       </button>
-      <button mat-icon-button aria-label="img button" matTooltip="Add Image">
+      <button mat-icon-button matTooltip="Add image">
         <mat-icon svgIcon="img-icon"></mat-icon>
       </button>
-      <button mat-icon-button aria-label="archive button" matTooltip="Archive">
+      <button mat-icon-button matTooltip="Archive">
         <mat-icon svgIcon="archive-icon"></mat-icon>
       </button>
-      <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" aria-label="more button" matTooltip="More" (click)="$event.stopPropagation()">
-        <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="more icon"></mat-icon>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item>Delete note</button>
-            <button mat-menu-item>Make a copy</button>
-        </mat-menu>
-    </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" matTooltip="More">
+        <mat-icon svgIcon="more-icon"></mat-icon>
+      </button>
+      <button mat-button class="close-button" (click)="addNoteToggle('save')">Close</button>
     </div>
-    <button mat-button class="close-button" (click)="addNoteToggle('save')">Close</button>
   </div>
 </ng-template>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Add label</button>
+  <button mat-menu-item>Show checkboxes</button>
+</mat-menu>
