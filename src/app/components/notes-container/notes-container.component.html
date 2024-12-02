@@ -1,6 +1,8 @@
-<app-add-note class="addnote" (updateList)="handleUpdateList($event)"></app-add-note>
-<div class='note'>
-    <div *ngFor="let note of notesList | filter: filterNote">
-        <app-note-card [noteDetails]="note" (updateList)="handleUpdateList($event)"></app-note-card>
+<div class="notes-container">
+    <app-add-note class="add-note" (updateList)="handleUpdateList($event)"></app-add-note>
+    <div class="notes">
+        <div *ngFor="let note of notesList | filter: filterNote">
+            <app-note-card [noteDetails]="note" (updateList)="handleUpdateList($event)"></app-note-card>
+        </div>
     </div>
 </div>

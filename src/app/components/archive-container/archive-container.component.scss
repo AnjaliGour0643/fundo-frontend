@@ -1,0 +1,17 @@
+.archive-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.notecard{
+    display: flex;
+    justify-content: center;
+}
+
+.notes{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 16px;
+}

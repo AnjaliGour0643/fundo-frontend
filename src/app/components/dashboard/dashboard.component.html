@@ -1,54 +1,52 @@
 <div class="dashboard-container">
-    <div class="header">
+  <div class="header">
       <button class="menu-button" (click)="handleDrawerClick()" mat-icon-button>
-        <mat-icon svgIcon="menu-icon"></mat-icon>
+          <mat-icon svgIcon="menu-icon"></mat-icon>
       </button>
       <div class="header-logo">
-        <img class="logo-icon" src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="Fundo">
-        <span class="logo-text">Fundoonotes</span>
+          <img class="logo-icon" src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="Fundo">
+          <span class="logo-text">Fundoonotes</span>
       </div>
       <div class="search-container">
-        <mat-icon class="search-icon">search</mat-icon>
-        <input type="text" placeholder="Search" class="search-box" (input)="updateSearchTerm($event)">
+          <mat-icon class="search-icon">search</mat-icon>
+          <input type="text" placeholder="Search" class="search-box" (keyup)="updateSearchTerm($event)">
       </div>
       <div class="header-actions">
-        <button mat-icon-button class="action-button">
-          <mat-icon>refresh</mat-icon>
-        </button>
-        <button mat-icon-button class="action-button">
-          <mat-icon>view_list</mat-icon>
-        </button>
-        <button mat-icon-button class="action-button">
-          <mat-icon>settings</mat-icon>
-        </button>
-        <button mat-icon-button class="action-button">
-          <img class="profile-icon"  alt="Profile">
-        </button>
+          <button mat-icon-button class="action-button">
+              <mat-icon>refresh</mat-icon>
+          </button>
+          <button mat-icon-button class="action-button">
+              <mat-icon>view_list</mat-icon>
+          </button>
+          <button mat-icon-button class="action-button">
+              <mat-icon>settings</mat-icon>
+          </button>
+          <button mat-icon-button class="action-button">
+              <img class="profile-icon" alt="Profile">
+          </button>
       </div>
-    </div>
-  
-    <mat-drawer-container class="drawer-container">
-        <mat-drawer #drawer class="drawer" [mode]="'over'" [opened]="drawerState">
-            <mat-nav-list>
+  </div>
+
+  <mat-drawer-container class="sidenav-container">
+      <mat-drawer #drawer [mode]="'over'" [opened]="drawerState" class="sidenav">
+          <mat-nav-list>
               <a mat-list-item class="drawer-item" routerLink="/dashboard/notes" routerLinkActive="active-link">
-                <mat-icon mat-list-icon>lightbulb_outline</mat-icon>
-                Notes
+                  <mat-icon>lightbulb_outline</mat-icon>
+                  <span class="item-text">Notes</span>
               </a>
               <a mat-list-item class="drawer-item" routerLink="/dashboard/archive" routerLinkActive="active-link">
-                <mat-icon mat-list-icon>archive</mat-icon>
-                Archive
+                  <mat-icon>archive</mat-icon>
+                  <span class="item-text">Archive</span>
               </a>
               <a mat-list-item class="drawer-item" routerLink="/dashboard/trash" routerLinkActive="active-link">
-                <mat-icon mat-list-icon>delete_outline</mat-icon>
-                Trash
+                  <mat-icon>delete_outline</mat-icon>
+                  <span class="item-text">Trash</span>
               </a>
-            </mat-nav-list>
-          </mat-drawer>
-  
-        <mat-drawer-content>
-            <router-outlet></router-outlet>
-        </mat-drawer-content>
-        
-    </mat-drawer-container>
-  </div>
-  
+          </mat-nav-list>
+      </mat-drawer>
+
+      <mat-drawer-content>
+          <router-outlet></router-outlet>
+      </mat-drawer-content>
+  </mat-drawer-container>
+</div>
