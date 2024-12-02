@@ -39,7 +39,6 @@ export class AddNoteComponent {
     let title = this.title.trim();
     let description = this.description.trim();
     let color = 'white';
-    let _id: any;
 
     this.addnote = !this.addnote
 
@@ -48,7 +47,8 @@ export class AddNoteComponent {
       
       this.httpService.postApiCall('/api/v1/notes', {title, description, color}, header).subscribe({
         next: (res: any) => {
-          console.log(res)
+          const _id = res.note._id
+          console.log(res)         
           this.updateList.emit({ title, description, _id, action: 'add' });
         },
         error: (err) => {
