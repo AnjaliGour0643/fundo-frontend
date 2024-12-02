@@ -14,10 +14,24 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class NoteCardComponent {
 
-  @Input() noteDetails: { title: string; description: string; _id: string } = {title: '', description: '', _id: ''};
+  @Input() noteDetails: { title: string; description: string; _id: string; color: string } = {title: '', description: '', _id: '', color: ''};
   isHovering = false;
 
   @Output() updateList = new EventEmitter
+
+  colorArray: Array<any> = [
+    { code: '#faafa8', name: 'Tomato' },
+    { code: '#f39f76', name: 'OrangeRed'},
+    { code: '#fff8b8', name: 'yellow' },
+    { code: '#e2f6d3', name: 'greenyellow' },
+    { code: '#b4ddd3', name: 'LightSteelBlue' },
+    { code: '#d4e4ed', name: 'PaleGoldenRod' },
+    { code: '#aeccdc', name: 'Aquamarine' },
+    { code: '#d3bfdb', name: 'Bisque' },
+    { code: '#f6e2dd', name: 'Silver' },
+    { code: '#e9e3d4', name: 'RosyBrown' },
+    { code: '#efeff1', name: 'grey' },
+  ];
 
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private dialog: MatDialog, private httpService: HttpService) {
     iconRegistry.addSvgIconLiteral('reminder-icon', sanitizer.bypassSecurityTrustHtml(REMINDER_ICON));
@@ -36,6 +50,7 @@ export class NoteCardComponent {
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     
     if (action === 'archive') {
+      console.log(this.noteDetails._id)
       this.httpService.putApiCall(`/api/v1/notes/${this.noteDetails._id}/archive`, {}, header).subscribe({
         next: (res: any) => {
           console.log('Archive status toggled:', res);
@@ -67,4 +82,16 @@ export class NoteCardComponent {
     });
   }
 
+  handleNoteColor(color: string) {
+    const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    this.httpService.putApiCall(`/api/v1/notes/${this.noteDetails._id}`, { color }, header).subscribe({
+      next: (res: any) => {
+        console.log('Color updated:', res);
+        this.updateList.emit({ _id: this.noteDetails._id, color });
+      },
+      error: (err: any) => {
+        console.error('Error updating color:', err);
+      }
+    });
+  }
 }

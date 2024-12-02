@@ -76,3 +76,33 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
   transform: scale(0.9);
 }
+
+.archive-icon-button{
+  transform: scale(1.1);
+}
+
+.color-palatte-icon-button {
+  display: flex;
+}
+
+.colorbutton{
+  width: 30px;
+  height: 30px;
+  border: 1px solid white;
+  border-radius: 50%;
+  margin: 2px;
+}
+
+.colorbutton:hover{
+  border: 1px solid black;
+}
+
+.colormenu{
+  display: flex;
+}
+
+::ng-deep {  
+  .mat-mdc-menu-panel {  
+    max-width: unset !important;  
+  }  
+}

@@ -20,19 +20,21 @@ export class NotesContainerComponent implements OnInit {
     this.httpService.getApiCall('/api/v1/notes/', header).subscribe({
       next: (res: any) => {
         console.log(res);
-
+    
         this.notesList = res.notes
           .filter((note: { isArchive: boolean; isTrash: boolean }) => !note.isArchive && !note.isTrash)
-          .map((note: { title: string; description: string; _id: string }) => ({
+          .map((note: { title: string; description: string; _id: string; color: string }) => ({
             title: note.title,
             description: note.description,
             _id: note._id,
+            color: note.color || '#fff'
           }));
       },
       error: (err) => {
-        console.log(err);
-      },
+        console.error(err);
+      }
     });
+    
 
     this.dataService.incomingSearchText.subscribe((text) => {
       console.log('Current search text:', text); 
@@ -43,12 +45,16 @@ export class NotesContainerComponent implements OnInit {
 
 
   handleUpdateList($event: any) {
-    const { title, description, _id, action } = $event;
+    const { title, description, _id, action, color } = $event;
   
     if (action === 'add') {
       this.notesList.push({ title, description, _id });
     } else if (action === 'archive' || action === 'trash') {
       this.notesList = this.notesList.filter((note) => note._id !== _id);
+    } else if (color) {
+      this.notesList = this.notesList.map((note) => 
+        note._id === _id ? { ...note, color } : note
+      );
     }
   }
 

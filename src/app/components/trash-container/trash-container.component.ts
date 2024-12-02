@@ -20,10 +20,11 @@ export class TrashContainerComponent {
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     this.httpService.getApiCall('/api/v1/notes', header).subscribe({
       next: (res: any) => {
-        let list = res.notes.map((note: { title: string; description: string; _id: string; isTrash: boolean }) => ({
+        let list = res.notes.map((note: { title: string; description: string; _id: string; color: string; isTrash: boolean }) => ({
           title: note.title, 
           description: note.description, 
           _id: note._id, 
+          color: note.color,
           isTrash: note.isTrash
         }));
         this.trashList = list.filter((note: any) => note.isTrash === true);
