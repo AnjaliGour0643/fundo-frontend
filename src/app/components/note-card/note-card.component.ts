@@ -51,7 +51,7 @@ export class NoteCardComponent {
   handleNoteIconsClick(action: string) {
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     
-    if (action === 'archive') {
+    if (action === 'archive' || action === 'unarchive') {
       console.log(this.noteDetails._id)
       this.httpService.putApiCall(`/api/v1/notes/${this.noteDetails._id}/archive`, {}, header).subscribe({
         next: (res: any) => {
@@ -60,7 +60,7 @@ export class NoteCardComponent {
         },
         error: (err) => console.error('Error archiving note:', err),
       });
-    } else if (action === 'trash') {
+    } else if (action === 'trash' || action === 'restore') {
       this.httpService.putApiCall(`/api/v1/notes/${this.noteDetails._id}/trash`, {}, header).subscribe({
         next: (res: any) => {
           console.log('Trash status toggled:', res);
