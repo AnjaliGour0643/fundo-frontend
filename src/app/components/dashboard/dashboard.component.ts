@@ -3,7 +3,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/dataService/data.service';
-import { MENU_ICON } from 'src/assets/svg-icons';
+import { LIST_VIEW_ICON, MENU_ICON, OTHER_MENU_ICON, REFRESH_ICON, SETTING_ICON } from 'src/assets/svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,10 +15,17 @@ export class DashboardComponent {
 
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router, private dataService: DataService) {
     iconRegistry.addSvgIconLiteral('menu-icon', sanitizer.bypassSecurityTrustHtml(MENU_ICON));
+    iconRegistry.addSvgIconLiteral('refresh-icon', sanitizer.bypassSecurityTrustHtml(REFRESH_ICON));
+    iconRegistry.addSvgIconLiteral('list-view-icon', sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON));
+    iconRegistry.addSvgIconLiteral('setting-icon', sanitizer.bypassSecurityTrustHtml(SETTING_ICON)); 
+    iconRegistry.addSvgIconLiteral('other-menu-icon', sanitizer.bypassSecurityTrustHtml(OTHER_MENU_ICON)); 
   }
 
-  handleDrawerClick(): void {
-    this.drawerState = !this.drawerState;
+  handleDrawerClick(click?: string){
+    if(click === 'menu')
+      this.drawerState = !this.drawerState
+    else if(this.drawerState === true)
+      this.drawerState = false
   }
 
   updateSearchTerm(event: Event): void {

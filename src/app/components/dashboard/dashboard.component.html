@@ -1,6 +1,6 @@
 <div class="dashboard-container">
   <div class="header">
-      <button class="menu-button" (click)="handleDrawerClick()" mat-icon-button>
+      <button class="menu-button" (click)="handleDrawerClick('menu')" mat-icon-button>
           <mat-icon svgIcon="menu-icon"></mat-icon>
       </button>
       <div class="header-logo">
@@ -13,13 +13,16 @@
       </div>
       <div class="header-actions">
           <button mat-icon-button class="action-button">
-              <mat-icon>refresh</mat-icon>
+              <mat-icon svgIcon="refresh-icon"></mat-icon>
           </button>
           <button mat-icon-button class="action-button">
-              <mat-icon>view_list</mat-icon>
+              <mat-icon svgIcon="list-view-icon"></mat-icon>
           </button>
           <button mat-icon-button class="action-button">
-              <mat-icon>settings</mat-icon>
+              <mat-icon svgIcon="setting-icon"></mat-icon>
+          </button>
+          <button mat-icon-button class="action-button">
+            <mat-icon svgIcon="other-menu-icon"></mat-icon>
           </button>
           <button mat-icon-button class="action-button">
               <img class="profile-icon" alt="Profile">
@@ -27,7 +30,7 @@
       </div>
   </div>
 
-  <mat-drawer-container class="sidenav-container">
+  <mat-drawer-container class="sidenav-container" [hasBackdrop]="true" (click)="handleDrawerClick()">
       <mat-drawer #drawer [mode]="'over'" [opened]="drawerState" class="sidenav">
           <mat-nav-list>
               <a mat-list-item class="drawer-item" routerLink="/dashboard/notes" routerLinkActive="active-link">
