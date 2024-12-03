@@ -13,10 +13,14 @@ export class HttpService {
     }
 
     getApiCall<T>(endpoint: string, headers: HttpHeaders){
-        return this.http.get('http://localhost:3000'+endpoint, { headers })
+        return this.http.get('http://localhost:3000'+ endpoint, { headers })
     }
 
     putApiCall(endpoint: string, data: any, headers: HttpHeaders){
-        return this.http.put('http://localhost:3000'+endpoint, data, { headers })
+        return this.http.put('http://localhost:3000'+ endpoint, data, { headers })
+    }
+
+    deleteApiCall(endpoint: string, data: any, headers: HttpHeaders){
+        return this.http.delete('http://localhost:3000'+endpoint, { headers })
     }
 }

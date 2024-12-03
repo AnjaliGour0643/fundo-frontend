@@ -68,6 +68,14 @@ export class NoteCardComponent {
         },
         error: (err) => console.error('Error trashing note:', err),
       });
+    } else if (action === 'deleteForever' ) {
+      this.httpService.deleteApiCall(`/api/v1/notes/${this.noteDetails._id}`, {}, header).subscribe({
+        next: (res: any) => {
+          console.log('Trash status toggled:', res);
+          this.updateList.emit({ _id: this.noteDetails._id, action: 'deleteForever' });
+        },
+        error: (err) => console.error('Error deleting note:', err),
+      });
     }
   }
   
