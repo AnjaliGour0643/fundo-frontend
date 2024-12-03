@@ -1,41 +1,66 @@
 <div class="notecard" [style.background-color]="noteDetails.color" (click)="editNoteDialog()">
-    <button class="pin-icon" mat-icon-button matTooltip="Pin note" (click)="$event.stopPropagation()">
-        <mat-icon svgIcon="pin-icon"></mat-icon>
-    </button>
+    <ng-container *ngIf="action !== 'trash'">
+        <button class="pin-icon" mat-icon-button matTooltip="Pin note" (click)="$event.stopPropagation()">
+            <mat-icon svgIcon="pin-icon"></mat-icon>
+        </button>
+    </ng-container>
+  
     <div class="content">
-        <div class="title">{{noteDetails.title}}</div>
-        <div class="description">{{noteDetails.description}}</div>
+        <div class="title">{{ noteDetails.title }}</div>
+        <div class="description">{{ noteDetails.description }}</div>
     </div>
+  
     <div class="buttons-container" (click)="$event.stopPropagation()">
-        <div class="buttons" [class.show-buttons]="menuTrigger.menuOpen || isHovering" (mouseenter)="isHovering = true" (mouseleave)="isHovering = false">
-            <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
-                <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
-            </button>
-            <button mat-icon-button [matMenuTriggerFor]="color_menu" aria-label="color button" matTooltip="Background color options" class="color-palatte-icon-button">
-                <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon"></mat-icon>
-                <mat-menu #color_menu="matMenu" yPosition="below" xPosition="after">
+        <div class="buttons" [class.show-buttons]="isHovering" [class.trash-buttons]="action === 'trash'" (mouseenter)="isHovering = true" (mouseleave)="isHovering = false">
+        
+        <!-- Default and Archive Buttons -->
+            <ng-container *ngIf="action !== 'trash'">
+                <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
+                    <mat-icon svgIcon="reminder-icon"></mat-icon>
+                </button>
+                <button mat-icon-button [matMenuTriggerFor]="color_menu" aria-label="color button" matTooltip="Background color options">
+                    <mat-icon svgIcon="color-palatte-icon"></mat-icon>
+                    <mat-menu #color_menu="matMenu" yPosition="below" xPosition="after">
                     <div class="colormenu">
-                      <div *ngFor="let color of colorArray">
-                        <button class="colorbutton" [style.background-color]="color.code" (click)="handleNoteColor(color.code)"></button>
-                      </div>
+                        <div *ngFor="let color of colorArray">
+                            <button class="colorbutton" [style.background-color]="color.code" (click)="handleNoteColor(color.code)"></button>
+                        </div>
                     </div>
-                </mat-menu>
-            </button>
-            <button mat-icon-button aria-label="img button" matTooltip="Add image">
-                <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"></mat-icon>
-            </button>
-            <button mat-icon-button class="archive-icon-button" aria-label="archive button" matTooltip="Archive" (click)="handleNoteIconsClick('archive'); $event.stopPropagation()">
-                <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon"></mat-icon>
-            </button>
-            <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" aria-label="more button" matTooltip="More">
-                <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="more icon"></mat-icon>
-                <mat-menu #menu="matMenu" xPosition="before">
-                    <button mat-menu-item (click)="handleNoteIconsClick('trash')">Delete note</button>
-                    <button mat-menu-item>Make a copy</button>
-                </mat-menu>
-            </button>
+                    </mat-menu>
+                </button>
+                <button mat-icon-button aria-label="img button" matTooltip="Add image">
+                    <mat-icon svgIcon="img-icon"></mat-icon>
+                </button>
+    
+                <!-- Archive or Unarchive Button -->
+                <button mat-icon-button class="archive-icon-button" aria-label="archive/unarchive button"
+                    matTooltip="{{ action === 'archive' ? 'Unarchive' : 'Archive' }}"
+                    (click)="handleNoteIconsClick(action === 'archive' ? 'unarchive' : 'archive')">
+                    <mat-icon [svgIcon]="action === 'archive' ? 'unarchive-icon' : 'archive-icon'"></mat-icon>
+                </button>
+
+                <!-- More Button -->
+                <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" aria-label="more button" matTooltip="More">
+                    <mat-icon svgIcon="more-icon"></mat-icon>
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <ng-container *ngIf="action !== 'trash'">
+                            <button mat-menu-item (click)="handleNoteIconsClick('trash')">Delete note</button>
+                            <button mat-menu-item>Make a copy</button>
+                        </ng-container>
+                    </mat-menu>
+                </button>
+            </ng-container>
+  
+            <!-- Trash Buttons -->
+            <ng-container *ngIf="action === 'trash'">
+                <button mat-icon-button aria-label="restore button" matTooltip="Restore note" (click)="handleNoteIconsClick('restore')">
+                    <mat-icon svgIcon="restore-icon"></mat-icon>
+                </button>
+                <button mat-icon-button aria-label="delete forever button" matTooltip="Delete forever" (click)="handleNoteIconsClick('deleteForever')">
+                    <mat-icon svgIcon="delete-forever-icon"></mat-icon>
+                </button>
+            </ng-container>
         </div>
     </div>
 </div>
-
-
+  

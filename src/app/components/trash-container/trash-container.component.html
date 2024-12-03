@@ -1,7 +1,7 @@
 <div class="trash-container">
     <div class="notes">
       <div *ngFor="let note of trashList">
-        <app-note-card class="notecard" [noteDetails]="note" (updateList)="handleUpdate()"></app-note-card>
+        <app-note-card class="notecard" [noteDetails]="note" [action]="'trash'" (updateList)="handleUpdate()"></app-note-card>
       </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HttpService } from 'src/app/services/http-service/http.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { HttpService } from 'src/app/services/http-service/http.service';
 })
 export class ArchiveContainerComponent {
   archiveList: any[] = [];
+  @Input() action: string = '';
 
   constructor(public httpService: HttpService) {}
 

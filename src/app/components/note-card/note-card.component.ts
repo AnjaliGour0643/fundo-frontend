@@ -15,8 +15,10 @@ import { HttpHeaders } from '@angular/common/http';
 export class NoteCardComponent {
 
   @Input() noteDetails: { title: string; description: string; _id: string; color: string } = {title: '', description: '', _id: '', color: ''};
+  @Input() action: string = '';
+  
   isHovering = false;
-
+  
   @Output() updateList = new EventEmitter
 
   colorArray: Array<any> = [

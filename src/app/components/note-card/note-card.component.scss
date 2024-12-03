@@ -66,6 +66,12 @@
   opacity: 1;
 }
 
+.buttons.trash-buttons {
+  justify-content: flex-start;
+  gap: 6px;
+  padding-left: 8px;
+}
+
 .pin-icon {
   position: absolute;
   top: 1px;
