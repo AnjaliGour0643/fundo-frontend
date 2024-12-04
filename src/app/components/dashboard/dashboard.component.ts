@@ -11,6 +11,9 @@ import { LIST_VIEW_ICON, MENU_ICON, OTHER_MENU_ICON, REFRESH_ICON, SETTING_ICON 
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+  email: any = localStorage.getItem('email')
+  firstName: any = localStorage.getItem('firstname')
+
   drawerState: boolean = false;
 
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router, private dataService: DataService) {
@@ -32,6 +35,11 @@ export class DashboardComponent {
     const input = event.target as HTMLInputElement;
     console.log('User entered search text:', input.value);
     this.dataService.updateSearchText(input.value); // Send search term to DataService
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['']);
   }
   
 }

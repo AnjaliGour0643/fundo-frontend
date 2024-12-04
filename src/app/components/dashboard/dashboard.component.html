@@ -24,9 +24,19 @@
           <button mat-icon-button class="action-button">
             <mat-icon svgIcon="other-menu-icon"></mat-icon>
           </button>
-          <button mat-icon-button class="action-button">
-              <img class="profile-icon" alt="Profile">
-          </button>
+          <button mat-icon-button [matMenuTriggerFor]="profileMenu" class="action-button">
+            <img class="profile-icon" alt="Profile">
+        </button>
+        <!-- Profile Mat-Menu -->
+        <mat-menu #profileMenu="matMenu">
+            <div class="profile-details">
+                <div class="profile-info">
+                    <span class="profile-name">email</span><br/>
+                    <span class="profile-email">firstname</span>
+                </div>
+            </div>
+            <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
       </div>
   </div>
 
