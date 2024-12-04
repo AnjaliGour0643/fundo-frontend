@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http-service/http.service';
 
@@ -14,31 +14,34 @@ export class LoginComponent {
   constructor(private formBuilder: FormBuilder, private httpService: HttpService, private router: Router) { }
 
   ngOnInit() {
-      this.loginForm = this.formBuilder.group({
-          email: ['', [Validators.required, Validators.email]],
-          password: ['', [Validators.required, Validators.minLength(6)]],
-      });
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
   }
 
-  // convenience getter for easy access to form fields
+  // Convenience getter for easy access to form fields
   get loginFormControls() { return this.loginForm.controls; }
 
-  handleLogin(){
-    if(this.loginForm.valid){
-      const { email, password } = this.loginForm.value
-      this.httpService.postApiCall<LoginResponse>('/api/v1/users/login', {email, password}).subscribe({
+  handleLogin() {
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      this.httpService.postApiCall<LoginResponse>('/api/v1/users/login', { email, password }).subscribe({
         next: (res) => {
-          console.log(res)
-          localStorage.setItem("token", res.user.token)
-          this.router.navigate(['/dashboard/notes'])
+          console.log(res);
+          localStorage.setItem("token", res.user.token);
+          localStorage.setItem("email", res.user.email);
+          localStorage.setItem("firstname", res.user.firstname);
+
+          // Navigate to dashboard
+          this.router.navigate(['/dashboard/notes']);
         },
         error: (err) => {
-          console.log(err)
+          console.error(err);
         }
-      })
+      });
     }
   }
-  
 }
 
 interface LoginResponse {
@@ -46,5 +49,7 @@ interface LoginResponse {
   message: string;
   user: {
     token: string;
+    email: string;
+    firstname: string; 
   };
 }

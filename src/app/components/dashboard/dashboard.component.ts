@@ -3,7 +3,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/dataService/data.service';
-import { LIST_VIEW_ICON, MENU_ICON, OTHER_MENU_ICON, REFRESH_ICON, SETTING_ICON } from 'src/assets/svg-icons';
+import { LIST_VIEW_ICON, MENU_ICON, OTHER_MENU_ICON, PROFILE_ICON, REFRESH_ICON, SETTING_ICON, SIGN_OUT_ICON } from 'src/assets/svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +12,7 @@ import { LIST_VIEW_ICON, MENU_ICON, OTHER_MENU_ICON, REFRESH_ICON, SETTING_ICON 
 })
 export class DashboardComponent {
   email: any = localStorage.getItem('email')
-  firstName: any = localStorage.getItem('firstname')
+  firstname: any = localStorage.getItem('firstname')
 
   drawerState: boolean = false;
 
@@ -22,6 +22,8 @@ export class DashboardComponent {
     iconRegistry.addSvgIconLiteral('list-view-icon', sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON));
     iconRegistry.addSvgIconLiteral('setting-icon', sanitizer.bypassSecurityTrustHtml(SETTING_ICON)); 
     iconRegistry.addSvgIconLiteral('other-menu-icon', sanitizer.bypassSecurityTrustHtml(OTHER_MENU_ICON)); 
+    iconRegistry.addSvgIconLiteral('profile-icon', sanitizer.bypassSecurityTrustHtml(PROFILE_ICON)); 
+    iconRegistry.addSvgIconLiteral('sign-out-icon', sanitizer.bypassSecurityTrustHtml(SIGN_OUT_ICON));
   }
 
   handleDrawerClick(click?: string){
