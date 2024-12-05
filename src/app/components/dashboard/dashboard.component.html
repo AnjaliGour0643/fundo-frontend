@@ -1,67 +1,92 @@
 <div class="dashboard-container">
-  <div class="header">
-      <button class="menu-button" (click)="handleDrawerClick('menu')" mat-icon-button>
-          <mat-icon svgIcon="menu-icon"></mat-icon>
-      </button>
-      <div class="header-logo">
-          <img class="logo-icon" src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="Fundo">
-          <span class="logo-text">Fundoonotes</span>
-      </div>
-      <div class="search-container">
-          <mat-icon class="search-icon">search</mat-icon>
-          <input type="text" placeholder="Search" class="search-box" (keyup)="updateSearchTerm($event)">
-      </div>
-      <div class="header-actions">
-          <button mat-icon-button class="action-button">
-              <mat-icon svgIcon="refresh-icon"></mat-icon>
-          </button>
-          <button mat-icon-button class="action-button">
-              <mat-icon svgIcon="list-view-icon"></mat-icon>
-          </button>
-          <button mat-icon-button class="action-button">
-              <mat-icon svgIcon="setting-icon"></mat-icon>
-          </button>
-          <button mat-icon-button class="action-button">
-            <mat-icon svgIcon="other-menu-icon"></mat-icon>
-          </button>
-          <button mat-icon-button [matMenuTriggerFor]="profileMenu" class="action-button">
-            <mat-icon svgIcon="profile-icon"></mat-icon>
+    <div class="header">
+        <button class="menu-button" (click)="handleDrawerClick('menu')" mat-icon-button>
+            <mat-icon svgIcon="menu-icon"></mat-icon>
         </button>
-        <!-- Profile Mat-Menu -->
-        <mat-menu #profileMenu="matMenu">
-            <div class="profile-details">
-                <span>{{ email }}</span><br/>
-                <img style="border-radius: 50%;" src="../../../assets/profile-image.svg" width="60px" height="60px" alt="Pr">
-                <span style="margin-top: 20px; font-size: large;">Hi, {{ firstname }}!</span>
-                <div class="signout-container">
-                    <mat-icon class="signout-icon" svgIcon="sign-out-icon"></mat-icon>
-                    <button class="signout-button" style="color: rgb(0, 6, 186); font-size: 16px;" mat-button (click)="logout()">Sign out</button>
+        <div class="header-logo">
+            <img class="logo-icon" src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="Fundo">
+            <span class="logo-text">Fundoonotes</span>
+        </div>
+        <div class="search-container">
+            <mat-icon class="search-icon">search</mat-icon>
+            <input type="text" placeholder="Search" class="search-box" (keyup)="updateSearchTerm($event)">
+        </div>
+        <div class="header-actions">
+            <button mat-icon-button class="action-button">
+                <mat-icon svgIcon="refresh-icon"></mat-icon>
+            </button>
+            <button mat-icon-button class="action-button">
+                <mat-icon svgIcon="list-view-icon"></mat-icon>
+            </button>
+            <button mat-icon-button class="action-button">
+                <mat-icon svgIcon="setting-icon"></mat-icon>
+            </button>
+            <button mat-icon-button class="action-button">
+                <mat-icon svgIcon="other-menu-icon"></mat-icon>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="profileMenu" class="action-button">
+                <mat-icon svgIcon="profile-icon"></mat-icon>
+            </button>
+            <mat-menu #profileMenu="matMenu">
+                <div class="profile-details">
+                    <span>{{ email }}</span><br/>
+                    <img style="border-radius: 50%;" src="../../../assets/profile-image.svg" width="60px" height="60px" alt="Pr">
+                    <span style="margin-top: 20px; font-size: large;">Hi, {{ firstname }}!</span>
+                    <div class="signout-container">
+                        <mat-icon class="signout-icon" svgIcon="sign-out-icon"></mat-icon>
+                        <button class="signout-button" style="color: rgb(0, 6, 186); font-size: 16px;" mat-button (click)="logout()">Sign out</button>
+                    </div>
                 </div>
-            </div>
-        </mat-menu>
-      </div>
-  </div>
+            </mat-menu>
+        </div>
+    </div>
 
-  <mat-drawer-container class="sidenav-container" [hasBackdrop]="true" (click)="handleDrawerClick()">
-      <mat-drawer #drawer [mode]="'over'" [opened]="drawerState" class="sidenav">
-          <mat-nav-list>
-              <a mat-list-item class="drawer-item" routerLink="/dashboard/notes" routerLinkActive="active-link">
-                  <mat-icon>lightbulb_outline</mat-icon>
-                  <span class="item-text">Notes</span>
-              </a>
-              <a mat-list-item class="drawer-item" routerLink="/dashboard/archive" routerLinkActive="active-link">
-                  <mat-icon>archive</mat-icon>
-                  <span class="item-text">Archive</span>
-              </a>
-              <a mat-list-item class="drawer-item" routerLink="/dashboard/trash" routerLinkActive="active-link">
-                  <mat-icon>delete_outline</mat-icon>
-                  <span class="item-text">Trash</span>
-              </a>
-          </mat-nav-list>
-      </mat-drawer>
+    <div class="drawer-icons" [class.drawer-open]="drawerState" [class.drawer-collapsed]="!drawerState">
+        <div class="drawer-icon-item" routerLink="/dashboard/notes" routerLinkActive="active-link">
+            <mat-icon svgIcon="bulb-icon"></mat-icon>
+            <span class="icon-label">Notes</span>
+        </div>
+        <div class="drawer-icon-item">
+            <mat-icon svgIcon="bell-icon"></mat-icon>
+            <span class="icon-label">Reminders</span>
+        </div>
+        <div class="drawer-icon-item">
+            <mat-icon svgIcon="edit-icon"></mat-icon>
+            <span class="icon-label">Edit labels</span>
+        </div>
+        <div class="drawer-icon-item" routerLink="/dashboard/archive" routerLinkActive="active-link">
+            <mat-icon svgIcon="archive-icon"></mat-icon>
+            <span class="icon-label">Archive</span>
+        </div>
+        <div class="drawer-icon-item" routerLink="/dashboard/trash" routerLinkActive="active-link">
+            <mat-icon svgIcon="trash-icon"></mat-icon>
+            <span class="icon-label">Trash</span>
+        </div>
+    </div>
 
-      <mat-drawer-content>
-          <router-outlet></router-outlet>
-      </mat-drawer-content>
-  </mat-drawer-container>
+    <mat-drawer-container class="sidenav-container" [hasBackdrop]="true" (click)="handleDrawerClick()">
+        <mat-drawer #drawer [mode]="'over'" [opened]="drawerState" class="sidenav" (mouseover)="drawerState" (mouseleave)="drawerState">
+            <mat-nav-list>
+                <a mat-list-item class="drawer-item" routerLink="/dashboard/notes" routerLinkActive="active-link">
+                    <span class="item-text">Notes</span>
+                </a>
+                <a mat-list-item class="drawer-item">
+                    <span class="item-text">Reminder</span>
+                </a>
+                <a mat-list-item class="drawer-item" >
+                    <span class="item-text">Edit labels</span>
+                </a>
+                <a mat-list-item class="drawer-item" routerLink="/dashboard/archive" routerLinkActive="active-link">
+                    <span class="item-text">Archive</span>
+                </a>
+                <a mat-list-item class="drawer-item" routerLink="/dashboard/trash" routerLinkActive="active-link">
+                    <span class="item-text">Trash</span>
+                </a>
+            </mat-nav-list>
+        </mat-drawer>
+
+        <mat-drawer-content>
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+    </mat-drawer-container>
 </div>

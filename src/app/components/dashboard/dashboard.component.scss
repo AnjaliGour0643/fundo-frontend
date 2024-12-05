@@ -113,10 +113,79 @@
     transform: scale(.8);
 }
 
-::ng-deep {  
-    .mat-mdc-menu-panel {  
-      max-width: unset !important;  
-    }  
+.drawer-icon-item mat-icon {
+    margin-right: 32px;
+    margin-left: 16px;
 }
 
-  
+.drawer-icons {
+    position: fixed;
+    left: 0;
+    top: 27%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    cursor: pointer;
+    background: transparent;
+    z-index: 100;
+
+    &.drawer-open {
+        .drawer-icon-item {
+            pointer-events: none; // Disable hover and click interactions
+        }
+    }
+
+    &.drawer-collapsed {
+        &:hover .drawer-icon-item .icon-label {
+            display: block;
+            width: 85px;
+        }
+
+        .drawer-icon-item {
+            pointer-events: auto; // Enable hover and click interactions
+
+            &:hover {
+                background-color: #e6ebed;
+            }
+
+            .icon-label {
+                display: none; // Default state
+            }
+        }
+    }
+}
+
+.drawer-icon-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    margin: 4px 0;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #000000;
+
+    &:hover {
+        background-color: #e6ebed;
+    }
+
+    .icon-label {
+        display: none;
+        font-size: 16px;
+    }
+}
+
+.drawer-item{
+    margin-top: 2px;
+
+    .item-text{
+        margin-left: 65px;
+    }
+}
+
+::ng-deep {  
+    .mat-mdc-menu-panel {  
+        max-width: unset !important;  
+    }  
+}
