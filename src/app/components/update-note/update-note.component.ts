@@ -13,11 +13,14 @@ export class UpdateNoteComponent{
   title: any = '';
   description: any = '';
   color: string = '';
+  _id: any = '';
 
-  constructor(public httpService:HttpService, public dialogRef: MatDialogRef<UpdateNoteComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(public httpService:HttpService, public dialogRef: MatDialogRef<UpdateNoteComponent>, 
+    @Inject(MAT_DIALOG_DATA) public data: any) {
     this.title = data.title,
     this.description = data.description,
     this.color = data.color
+    this._id = data._id
   }
 
   onNoClick(): void {
@@ -25,7 +28,7 @@ export class UpdateNoteComponent{
     this.httpService.putApiCall(`/api/v1/notes/${this.data._id}`, {title:this.title, description:this.description, color:this.data.color}, header).subscribe({
       next: (res: any) => {
         console.log(res)
-        this.dialogRef.close({ title: this.title, description: this.description, color: this.color });
+        this.dialogRef.close({ title: this.title, description: this.description, _id: this._id,color: this.color });
       },
       error: (err) => {
         console.log(err)

@@ -1,9 +1,9 @@
-<div class="card">
-    <div class="card-content">
-      <input type="text" class="input-field" placeholder="Title" [(ngModel)]="title">
-      <input type="text" class="input-field" placeholder="Description" [(ngModel)]="description">
+<div class="card" [style.background-color]="color">
+    <div class="card-content"  [style.background-color]="color">
+      <input [style.background-color]="color" type="text" class="input-field" placeholder="Title" [(ngModel)]="title">
+      <input  [style.background-color]="color" type="text" class="input-field" placeholder="Description" [(ngModel)]="description">
     </div>
-    <div class="card-footer">
+    <div class="card-footer"  [style.background-color]="color">
       <div class="action-buttons">
         <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
             <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
