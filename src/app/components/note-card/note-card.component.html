@@ -45,7 +45,12 @@
                     <mat-menu #menu="matMenu" xPosition="before">
                         <ng-container *ngIf="action !== 'trash'">
                             <button mat-menu-item (click)="handleNoteIconsClick('trash')">Delete note</button>
+                            <button mat-menu-item>Change labels</button>
+                            <button mat-menu-item>Add drawing</button>
                             <button mat-menu-item>Make a copy</button>
+                            <button mat-menu-item>Show checkboxes</button>
+                            <button mat-menu-item>Copy to Google Docs</button>
+                            <button mat-menu-item>Version history</button>
                         </ng-container>
                     </mat-menu>
                 </button>

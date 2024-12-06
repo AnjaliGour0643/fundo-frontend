@@ -16,6 +16,7 @@ export class NoteCardComponent {
 
   @Input() noteDetails: { title: string; description: string; _id: string; color: string } = {title: '', description: '', _id: '', color: ''};
   @Input() action: string = '';
+  @Input() _id = '';
   
   isHovering = false;
   
@@ -87,8 +88,11 @@ export class NoteCardComponent {
       data: this.noteDetails,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.noteDetails = {...result, _id: this.noteDetails._id}
+    dialogRef.afterClosed().subscribe((result) => {
+      if(result === undefined){
+        return result;
+      }
+      this.noteDetails = { title: result.title, description: result.description, _id: result._id, color:result.color }
     });
   }
 
