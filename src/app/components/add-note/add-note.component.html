@@ -14,7 +14,7 @@
 </div>
 
 <ng-template #expandedNote>
-  <div class="input">
+  <div class="input" [style.background-color]="color">
     <button class="pin-icon" mat-icon-button matTooltip="Pin note">
       <mat-icon svgIcon="pin-icon"></mat-icon>
     </button>
@@ -24,12 +24,17 @@
       <button mat-icon-button matTooltip="Remind me">
         <mat-icon svgIcon="reminder-icon"></mat-icon>
       </button>
-      <button mat-icon-button matTooltip="Collaborator">
-        <mat-icon svgIcon="collabrator-icon"></mat-icon>
-      </button>
-      <button mat-icon-button matTooltip="Background options">
+      <button mat-icon-button [matMenuTriggerFor]="colorMenu" matTooltip="Background color options">
         <mat-icon svgIcon="color-palatte-icon"></mat-icon>
       </button>
+      <mat-menu #colorMenu="matMenu">
+        <div class="colormenu">
+          <div *ngFor="let color of colorArray">
+            <button class="colorbutton" [style.background-color]="color.code" (click)="setNoteColor(color.code)">
+            </button>
+          </div>
+        </div>
+      </mat-menu>      
       <button mat-icon-button matTooltip="Add image">
         <mat-icon svgIcon="img-icon"></mat-icon>
       </button>

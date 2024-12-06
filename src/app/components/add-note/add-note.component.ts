@@ -19,6 +19,27 @@ export class AddNoteComponent {
 
   @Output() updateList = new EventEmitter()
 
+  colorArray: Array<any> = [
+    { code: '#faafa8', name: 'Tomato' },
+    { code: '#f39f76', name: 'OrangeRed' },
+    { code: '#fff8b8', name: 'Yellow' },
+    { code: '#e2f6d3', name: 'GreenYellow' },
+    { code: '#b4ddd3', name: 'LightSteelBlue' },
+    { code: '#d4e4ed', name: 'PaleGoldenRod' },
+    { code: '#aeccdc', name: 'Aquamarine' },
+    { code: '#d3bfdb', name: 'Bisque' },
+    { code: '#f6e2dd', name: 'Silver' },
+    { code: '#e9e3d4', name: 'RosyBrown' },
+    { code: '#efeff1', name: 'Grey' },
+  ];
+  
+  color: string = '#ffffff';
+  
+  setNoteColor(color: string) {
+    this.color = color; 
+    this.color = color; 
+  }
+
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private httpService: HttpService) {
     iconRegistry.addSvgIconLiteral('reminder-icon', sanitizer.bypassSecurityTrustHtml(REMINDER_ICON));
     iconRegistry.addSvgIconLiteral('collabrator-icon', sanitizer.bypassSecurityTrustHtml(COLLABRATOR_ICON));
@@ -38,8 +59,7 @@ export class AddNoteComponent {
   addNoteToggle(action: string) {
     let title = this.title.trim();
     let description = this.description.trim();
-    let color = 'white';
-  
+    
     if (action !== 'archive') {
       this.addnote = !this.addnote;
     }
@@ -48,12 +68,12 @@ export class AddNoteComponent {
       const isArchive = action === 'archive';
       const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
       
-      this.httpService.postApiCall('/api/v1/notes', { title, description, color, isArchive }, header).subscribe({
+      this.httpService.postApiCall('/api/v1/notes', { title, description, color: this.color, isArchive }, header).subscribe({
         next: (res: any) => {
           const _id = res.note._id;
           console.log(res);
   
-          this.updateList.emit({ title, description, _id, action: isArchive ? 'archive' : 'add' });
+          this.updateList.emit({ title, description, color: this.color, _id, action: isArchive ? 'archive' : 'add' });
         },
         error: (err) => {
           console.log(err);
@@ -61,10 +81,12 @@ export class AddNoteComponent {
       });
     }
   
-    // Reset the input fields
+    // Reset input fields and color
     this.title = '';
     this.description = '';
+    this.color = '#ffffff';
   }
+  
   
 
 }
