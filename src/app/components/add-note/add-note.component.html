@@ -33,7 +33,7 @@
       <button mat-icon-button matTooltip="Add image">
         <mat-icon svgIcon="img-icon"></mat-icon>
       </button>
-      <button mat-icon-button matTooltip="Archive">
+      <button mat-icon-button matTooltip="Archive" (click)="addNoteToggle('archive')">
         <mat-icon svgIcon="archive-icon"></mat-icon>
       </button>
       <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" matTooltip="More">
@@ -46,5 +46,6 @@
 
 <mat-menu #menu="matMenu">
   <button mat-menu-item>Add label</button>
+  <button mat-menu-item>Add drawing</button>
   <button mat-menu-item>Show checkboxes</button>
 </mat-menu>

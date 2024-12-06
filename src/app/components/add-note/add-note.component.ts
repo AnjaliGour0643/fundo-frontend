@@ -35,30 +35,36 @@ export class AddNoteComponent {
 
   }
 
-  addNoteToggle(action: string){
+  addNoteToggle(action: string) {
     let title = this.title.trim();
     let description = this.description.trim();
     let color = 'white';
-
-    this.addnote = !this.addnote
-
-    if(action==='save' && (title && description)){
+  
+    if (action !== 'archive') {
+      this.addnote = !this.addnote;
+    }
+  
+    if ((action === 'save' || action === 'archive') && (title && description)) {
+      const isArchive = action === 'archive';
       const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
       
-      this.httpService.postApiCall('/api/v1/notes', {title, description, color}, header).subscribe({
+      this.httpService.postApiCall('/api/v1/notes', { title, description, color, isArchive }, header).subscribe({
         next: (res: any) => {
-          const _id = res.note._id
-          console.log(res)         
-          this.updateList.emit({ title, description, _id, action: 'add' });
+          const _id = res.note._id;
+          console.log(res);
+  
+          this.updateList.emit({ title, description, _id, action: isArchive ? 'archive' : 'add' });
         },
         error: (err) => {
-          console.log(err)
+          console.log(err);
         }
-      })
+      });
     }
+  
     // Reset the input fields
     this.title = '';
     this.description = '';
   }
+  
 
 }
