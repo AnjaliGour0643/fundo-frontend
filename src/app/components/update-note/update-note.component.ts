@@ -36,4 +36,20 @@ export class UpdateNoteComponent{
     })
   }
 
+  archiveNote(): void {
+    const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    this.httpService
+      .putApiCall(`/api/v1/notes/${this.data._id}/archive`, {}, header)
+      .subscribe({
+        next: (res: any) => {
+          console.log('Note archived:', res);
+          this.dialogRef.close({ title: this.title, description: this.description, color: this.color, archived: true });
+        },
+        error: (err) => {
+          console.error('Error archiving note:', err);
+        },
+      });
+  }
+  
+
 }
