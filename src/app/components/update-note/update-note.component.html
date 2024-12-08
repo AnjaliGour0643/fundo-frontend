@@ -17,16 +17,27 @@
         <button mat-icon-button aria-label="archive button" matTooltip="Archive" (click)="archiveNote()">
             <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon"></mat-icon>
         </button>
-        <button mat-icon-button aria-label="More Options button" matTooltip="More Options">
-          <mat-icon svgIcon="more-icon" aria-hidden="false"></mat-icon>
-        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" aria-label="more button" matTooltip="More">
+          <mat-icon svgIcon="more-icon"></mat-icon>
+          <mat-menu #menu="matMenu" xPosition="after">
+              <ng-container >
+                  <button mat-menu-item (click)="trashNote()">Delete note</button>
+                  <button mat-menu-item>Change labels</button>
+                  <button mat-menu-item>Add drawing</button>
+                  <button mat-menu-item>Make a copy</button>
+                  <button mat-menu-item>Show checkboxes</button>
+                  <button mat-menu-item>Copy to Google Docs</button>
+                  <button mat-menu-item>Version history</button>
+              </ng-container>
+          </mat-menu>
+      </button>
       </div>
       <div class="edit-buttons">
         <button mat-icon-button aria-label="Undo button" matTooltip="Undo">
-          <mat-icon>undo</mat-icon>
+          <mat-icon svgIcon="undo-icon"></mat-icon>
         </button>
         <button mat-icon-button aria-label="Redo button" matTooltip="Redo">
-          <mat-icon>redo</mat-icon>
+          <mat-icon svgIcon="redo-icon"></mat-icon>
         </button>
         <button mat-button class="close-button" (click)="onNoClick()" [mat-dialog-close]="title">Close</button>
       </div>
