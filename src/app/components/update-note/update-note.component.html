@@ -8,9 +8,16 @@
         <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
             <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
         </button>
-        <button mat-icon-button aria-label="color button" matTooltip="Background Color Options">
+        <button mat-icon-button [matMenuTriggerFor]="color_menu" aria-label="color button" matTooltip="Background Color Options">
             <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon"></mat-icon>
         </button>
+        <mat-menu #color_menu="matMenu" yPosition="below" xPosition="after">
+          <div class="colormenu">
+            <div *ngFor="let color of colorArray">
+              <button class="colorbutton" [style.background-color]="color.code" (click)="setColor(color.code)"></button>
+            </div>
+          </div>
+        </mat-menu>
         <button mat-icon-button aria-label="img button" matTooltip="Add Image">
             <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"></mat-icon>
         </button>

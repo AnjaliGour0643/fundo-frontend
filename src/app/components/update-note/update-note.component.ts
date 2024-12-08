@@ -18,6 +18,24 @@ export class UpdateNoteComponent{
   color: string = '';
   _id: any = '';
 
+  colorArray: Array<any> = [
+    { code: '#faafa8', name: 'Tomato' },
+    { code: '#f39f76', name: 'OrangeRed' },
+    { code: '#fff8b8', name: 'Yellow' },
+    { code: '#e2f6d3', name: 'GreenYellow' },
+    { code: '#b4ddd3', name: 'LightSteelBlue' },
+    { code: '#d4e4ed', name: 'PaleGoldenRod' },
+    { code: '#aeccdc', name: 'Aquamarine' },
+    { code: '#d3bfdb', name: 'Bisque' },
+    { code: '#f6e2dd', name: 'Silver' },
+    { code: '#e9e3d4', name: 'RosyBrown' },
+    { code: '#efeff1', name: 'Grey' },
+  ];
+  
+  setColor(color: string): void {
+    this.color = color; 
+  }  
+
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer,public httpService:HttpService, public dialogRef: MatDialogRef<UpdateNoteComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     iconRegistry.addSvgIconLiteral('undo-icon', sanitizer.bypassSecurityTrustHtml(UNDO_ICON));
     iconRegistry.addSvgIconLiteral('redo-icon', sanitizer.bypassSecurityTrustHtml(REDO_ICON));
@@ -27,12 +45,18 @@ export class UpdateNoteComponent{
     this._id = data._id
   }
 
+  ngOnInit(): void {
+    this.dialogRef.backdropClick().subscribe(() => {
+      this.onNoClick();
+    });
+  }
+
   onNoClick(): void {
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     this.httpService.putApiCall(`/api/v1/notes/${this.data._id}`, {title:this.title, description:this.description, color:this.data.color}, header).subscribe({
       next: (res: any) => {
         console.log(res)
-        this.dialogRef.close({ title: this.title, description: this.description, _id: this._id,color: this.color });
+        this.dialogRef.close({ title: this.title, description: this.description, color: this.color, _id: this._id });
       },
       error: (err) => {
         console.log(err)
@@ -42,31 +66,48 @@ export class UpdateNoteComponent{
 
   archiveNote(): void {
   const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-  this.httpService
-    .putApiCall(`/api/v1/notes/${this.data._id}/archive`, {}, header)
-    .subscribe({
-      next: (res: any) => {
-        console.log('Note archived:', res);
-        this.dialogRef.close({ title: this.title, description: this.description, color: this.color, archived: true });
+  
+  this.httpService.putApiCall(`/api/v1/notes/${this._id}`, { title: this.title, description: this.description, color: this.color }, header).subscribe({
+    next: (res: any) => {
+      console.log('Note updated before archiving:', res);
+
+      this.httpService
+        .putApiCall(`/api/v1/notes/${this.data._id}/archive`, {}, header)
+        .subscribe({
+          next: (res: any) => {
+            console.log('Note archived:', res);
+            this.dialogRef.close({ title: this.title, description: this.description, color: this.color, archived: true });
+          },
+          error: (err) => {
+            console.error('Error archiving note:', err);
+          },
+        });
       },
       error: (err) => {
-        console.error('Error archiving note:', err);
-      },
+        console.log('Error updating note before archiving: ', err);
+      }
     });
   }
 
   trashNote(): void {
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    this.httpService.putApiCall(`/api/v1/notes/${this._id}/trash`, {}, header).subscribe({
+    this.httpService.putApiCall(`/api/v1/notes/${this._id}`, { title: this.title, description: this.description, color: this.color }, header).subscribe({
       next: (res: any) => {
-        console.log('Note moved to trash:', res);
-        this.dialogRef.close({ _id: this._id, trashed: true });
+        console.log('Note updated before trashing:', res);
+    
+        this.httpService.putApiCall(`/api/v1/notes/${this._id}/trash`, {}, header).subscribe({
+          next: (res: any) => {
+            console.log('Note moved to trash:', res);
+            this.dialogRef.close({ _id: this._id, trashed: true });
+          },
+          error: (err) => {
+            console.error('Error moving note to trash:', err);
+          }
+        });
       },
-      error: (err) => {
-        console.error('Error moving note to trash:', err);
-      }
+      error: (updateErr) => {
+        console.error('Error updating note before trashing:', updateErr);
+      },
     });
   }
-  
-
 }

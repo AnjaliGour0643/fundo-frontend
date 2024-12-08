@@ -42,4 +42,23 @@
       }
     }
   }
+
+  .colorbutton {
+    width: 30px;
+    height: 30px;
+    border: 1px solid white;
+    border-radius: 50%;
+    margin: 2px;
+    cursor: pointer;
+  }
+  
+  .colorbutton:hover {
+    border: 1px solid black;
+  }
+  
+  .colormenu {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
   
