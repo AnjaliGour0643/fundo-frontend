@@ -11,6 +11,7 @@ import { HttpService } from 'src/app/services/http-service/http.service';
 export class NotesContainerComponent implements OnInit {
   notesList: Array<{ title: string; description: string, _id: string }> = [];
   filterNote: string = '';
+  loader:string = 'flex';
 
   constructor(private httpService: HttpService, private dataService: DataService) {}
 
@@ -29,6 +30,7 @@ export class NotesContainerComponent implements OnInit {
             _id: note._id,
             color: note.color || '#fff'
           }));
+          this.loader = 'none'
       },
       error: (err) => {
         console.error(err);

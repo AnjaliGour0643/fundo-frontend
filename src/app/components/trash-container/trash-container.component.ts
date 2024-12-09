@@ -9,6 +9,8 @@ import { HttpService } from 'src/app/services/http-service/http.service';
 })
 export class TrashContainerComponent {
   trashList: any[] = [];
+  loader:string = 'flex' 
+
   @Input() action: string = '';
 
   constructor(public httpService: HttpService) {}
@@ -30,6 +32,7 @@ export class TrashContainerComponent {
         }));
         this.trashList = list.filter((note: any) => note.isTrash === true);
         console.log(this.trashList);
+        this.loader = 'none'
       },
       error: (err) => console.error(err),
     });

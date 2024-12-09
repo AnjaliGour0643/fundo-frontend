@@ -1,5 +1,11 @@
 <div class="notes-container">
     <app-add-note class="add-note" (updateList)="handleUpdateList($event)"></app-add-note>
+    <div class="spinner" [style.display]="loader">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div class="no_note" *ngIf="loader === 'none' && notesList.length === 0">
+        <span>Add a note to display</span>
+    </div>
     <div class="notes">
         <div *ngFor="let note of notesList | filter: filterNote">
             <app-note-card [noteDetails]="note" (updateList)="handleUpdateList($event)"></app-note-card>

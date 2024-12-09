@@ -9,6 +9,7 @@ import { HttpService } from 'src/app/services/http-service/http.service';
 })
 export class ArchiveContainerComponent {
   archiveList: any[] = [];
+  loader:string = 'flex'
   @Input() action: string = '';
 
   constructor(public httpService: HttpService) {}
@@ -29,6 +30,7 @@ export class ArchiveContainerComponent {
           isArchive: note.isArchive}));
         this.archiveList = list.filter((note: any) => note.isArchive === true);
         console.log(this.archiveList);
+        this.loader = 'none'
       },
       error: (err) => console.error(err),
     });

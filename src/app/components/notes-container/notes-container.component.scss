@@ -12,6 +12,23 @@
 .notes{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
+    gap: 16px;
     padding: 16px;
+}
+
+.spinner{
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    margin: 30px 40px;
+}
+
+.no_note{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    margin: 30px 40px;
+    font-size: large;
+    color: rgb(152, 152, 152);
 }
