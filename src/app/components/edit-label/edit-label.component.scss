@@ -1,0 +1,70 @@
+.outer_box{
+    min-height: 170px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    justify-content: space-around;
+
+    .header{
+        padding-bottom: 10px;
+    }
+
+    .labels{
+        display: flex;
+        flex-direction: column;
+
+        .new_label{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            .button{
+                margin-top: 2px;
+            }
+        }
+
+        .existing_label{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 5px;
+
+            .button{
+                margin-top: 2px;
+            }
+        }
+        
+    }
+
+    .footer{
+        display: flex;
+        justify-content: end;
+    }
+}
+
+input{
+    border: none;
+    outline: none;
+    font-size: 15px;
+    height: 30px;
+}
+
+.small-icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Reduce button size */
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Adjust the icon size */
+  .small-icon-button mat-icon{
+    position: absolute;
+    transform: scale(.7);
+
+
+  }
+

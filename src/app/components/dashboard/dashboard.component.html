@@ -51,6 +51,14 @@
             <span class="icon-label">Reminders</span>
         </div>
         <div class="drawer-icon-item">
+            <mat-icon svgIcon="label-icon"></mat-icon>
+            <span class="icon-label">Sample</span>
+        </div>
+        <div *ngFor="let label of labels">
+            <mat-icon svgIcon="label-icon"></mat-icon>
+            <span class="icon-label">{{label}}</span>
+        </div>
+        <div class="drawer-icon-item" (click)="editlabels()">
             <mat-icon svgIcon="edit-icon"></mat-icon>
             <span class="icon-label">Edit labels</span>
         </div>
@@ -73,7 +81,14 @@
                 <a mat-list-item class="drawer-item">
                     <span class="item-text">Reminder</span>
                 </a>
-                <a mat-list-item class="drawer-item" >
+                <a mat-list-item class="drawer-item">
+                    <span class="item-text">Sample</span>
+                </a>
+                <a *ngFor="let label of labels">
+                    <mat-icon svgIcon="label-icon"></mat-icon>
+                    <span class="icon-label">{{label}}</span>
+                </a>
+                <a mat-list-item class="drawer-item" (click)="editlabels()" >
                     <span class="item-text">Edit labels</span>
                 </a>
                 <a mat-list-item class="drawer-item" routerLink="/dashboard/archive" routerLinkActive="active-link">

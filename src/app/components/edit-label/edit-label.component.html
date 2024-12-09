@@ -1,0 +1,31 @@
+<div class="outer_box">
+    <div class="header">
+            <span style="padding: 5px;">Edit labels</span>
+    </div>
+    <div class="labels">
+            <div class="new_label">
+                    <button mat-icon-button aria-label="collabrator button" matTooltip="Collabrator" class="small-icon-button" (click)="labelhandle(newLabelInput, 'cancel')">
+                            <mat-icon svgIcon="cancel-icon" aria-hidden="false" aria-label="collabrator icon"></mat-icon>
+                    </button>
+                    <input #newLabelInput class="create_label" type="text" placeholder="Create new label">
+                    <button mat-icon-button aria-label="collabrator button" matTooltip="Collabrator" class="small-icon-button" (click)="labelhandle(newLabelInput, 'add', newLabelInput.value)">
+                            <mat-icon svgIcon="tick2-icon" aria-hidden="false" aria-label="collabrator icon"></mat-icon>
+                    </button>
+            </div>
+            
+            <div class="existing_label" *ngFor="let label of labels; let i = index">
+                    <button mat-icon-button aria-label="collabrator button" matTooltip="Collabrator" class="small-icon-button" (click)="labelhandle(i, 'remove')">
+                            <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="collabrator icon"></mat-icon>
+                    </button>
+                    <input #editInput class="create_label" type="text" [value]="label" placeholder="Edit label">
+                    <button mat-icon-button aria-label="collabrator button" matTooltip="Collabrator" class="small-icon-button" (click)="labelhandle(i, 'edit', editInput.value)">
+                            <mat-icon svgIcon="tick2-icon" aria-hidden="false" aria-label="collabrator icon"></mat-icon>
+                    </button>
+            </div>
+    </div>
+    
+    <div class="footer">
+            <button style="margin-right: 14px;" mat-button (click)="onNoClick()">Done</button>
+    </div>
+</div>
+
