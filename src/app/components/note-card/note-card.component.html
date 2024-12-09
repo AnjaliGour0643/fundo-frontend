@@ -18,7 +18,10 @@
                 <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
                     <mat-icon svgIcon="reminder-icon"></mat-icon>
                 </button>
-                <button mat-icon-button [matMenuTriggerFor]="color_menu" aria-label="color button" matTooltip="Background color options">
+                <button mat-icon-button aria-label="collabrator button" matTooltip="Collabrator">
+                    <mat-icon svgIcon="collabrator-icon"></mat-icon>
+                </button>
+                <button mat-icon-button [matMenuTriggerFor]="color_menu" aria-label="color button" matTooltip="Background color options"  (click)="$event.stopPropagation()">
                     <mat-icon svgIcon="color-palatte-icon"></mat-icon>
                     <mat-menu #color_menu="matMenu" yPosition="below" xPosition="after">
                     <div class="colormenu">
@@ -42,7 +45,7 @@
                 <!-- More Button -->
                 <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" aria-label="more button" matTooltip="More">
                     <mat-icon svgIcon="more-icon"></mat-icon>
-                    <mat-menu #menu="matMenu" xPosition="before">
+                    <mat-menu #menu="matMenu" xPosition="after">
                         <ng-container *ngIf="action !== 'trash'">
                             <button mat-menu-item (click)="handleNoteIconsClick('trash')">Delete note</button>
                             <button mat-menu-item>Change labels</button>

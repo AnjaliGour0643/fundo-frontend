@@ -91,7 +91,9 @@ export class NoteCardComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.archived) {
         this.updateList.emit({ _id: this.noteDetails._id, action: 'archive' });
-      } else if (result) {
+      } else if (result?.trashed) {
+        this.updateList.emit({ _id: this.noteDetails._id, action: 'trash' });
+      }else if (result) {
         this.noteDetails = { 
           title: result.title, 
           description: result.description, 
