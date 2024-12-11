@@ -10,8 +10,11 @@ export class DataService {
 
   constructor() {}
 
-  updateSearchText(text: string): void {
-    console.log('Updated search text:', text)
-    this.searchSource.next(text); // Update the BehaviorSubject with the new search text
+  private messageSource = new BehaviorSubject<string[]>([]);
+  incomingData = this.messageSource.asObservable();
+
+  outgoingData(message: any){
+    console.log(message);
+    this.messageSource.next(message)
   }
 }
