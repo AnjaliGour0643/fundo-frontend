@@ -57,6 +57,7 @@ export class AddNoteComponent {
   }
 
   addNoteToggle(action: string) {
+    
     let title = this.title.trim();
     let description = this.description.trim();
     

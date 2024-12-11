@@ -1,4 +1,4 @@
-<div class="takenote" *ngIf="addnote else expandedNote" (click)="addNoteToggle('toggle')">
+<div class="takenote" *ngIf="addnote else expandedNote" (click)="addNoteToggle('toggle')" data-testid="take-note-div">
   <span>Take a note...</span>
   <div class="icons">
     <button mat-icon-button matTooltip="New list">
