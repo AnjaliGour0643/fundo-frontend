@@ -9,8 +9,8 @@ import { HttpService } from 'src/app/services/http-service/http.service';
   styleUrls: ['./notes-container.component.scss']
 })
 export class NotesContainerComponent implements OnInit {
-  notesList: Array<{ title: string; description: string, _id: string }> = [];
-  filterNote: string = '';
+  notesList: Array<{ title: string; description: string; _id: string; color?: string }> = [];
+  filterNote: any;
   loader:string = 'flex';
 
   constructor(private httpService: HttpService, private dataService: DataService) {}
@@ -38,10 +38,10 @@ export class NotesContainerComponent implements OnInit {
     });
     
 
-    this.dataService.incomingSearchText.subscribe((text) => {
-      console.log('Current search text:', text); 
-      this.filterNote = text; 
-    });
+    this.dataService.incomingData.subscribe((response) => {
+      console.log("Search in process", response);
+      this.filterNote = response;
+    })
 
   }
 

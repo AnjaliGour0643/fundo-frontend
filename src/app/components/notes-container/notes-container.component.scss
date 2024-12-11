@@ -32,3 +32,28 @@
     font-size: large;
     color: rgb(152, 152, 152);
 }
+
+
+@media (max-width: 600px) {
+    .notes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 960px) {
+    .notes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 961px) and (max-width: 1280px) {
+    .notes-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1281px) {
+    .notes-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
