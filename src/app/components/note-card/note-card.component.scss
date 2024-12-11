@@ -5,9 +5,8 @@
   height: auto;
   min-height: 100px;
   width: 250px;
-  border: solid #ccc;
-  margin: 0px 16px 16px 16px;
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   position: relative;
   padding: 12px 16px;
 
@@ -17,6 +16,10 @@
   }
 
   &:hover .pin-icon {
+    opacity: 1;
+  }
+
+  .notecard:hover .buttons{
     opacity: 1;
   }
 }
@@ -54,7 +57,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.45s ease;
   transform: scale(.9);
 
   &:hover {
@@ -65,12 +68,6 @@
 .notecard:hover .buttons,
 .buttons.show-buttons {
   opacity: 1;
-}
-
-.buttons.trash-buttons {
-  justify-content: flex-start;
-  gap: 6px;
-  padding-left: 8px;
 }
 
 .pin-icon {
@@ -98,10 +95,6 @@
   border: 1px solid white;
   border-radius: 50%;
   margin: 2px;
-}
-
-.colorbutton:hover{
-  border: 1px solid black;
 }
 
 .colormenu{
