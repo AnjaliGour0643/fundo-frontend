@@ -29,7 +29,6 @@ import { NoteCardComponent } from './components/note-card/note-card.component';
 import { AddNoteComponent } from './components/add-note/add-note.component';
 import { UpdateNoteComponent } from './components/update-note/update-note.component';
 import { FilterPipe } from './pipes/filter.pipe';
-import { IconsComponent } from './components/icons/icons.component';
 import { EditLabelComponent } from './components/edit-label/edit-label.component';
 
 @NgModule({
@@ -45,7 +44,6 @@ import { EditLabelComponent } from './components/edit-label/edit-label.component
     AddNoteComponent,
     UpdateNoteComponent,
     FilterPipe,
-    IconsComponent,
     EditLabelComponent,
   ],
   imports: [
