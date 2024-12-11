@@ -121,7 +121,7 @@
 .drawer-icons {
     position: fixed;
     left: 0;
-    top: 27%;
+    top: 30%;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
@@ -180,7 +180,7 @@
     margin-top: 2px;
 
     .item-text{
-        margin-left: 65px;
+        margin-left: 15px;
     }
 }
 
@@ -189,3 +189,171 @@
         max-width: unset !important;  
     }  
 }
+
+
+
+
+
+
+
+.header{
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 65px;
+    border-bottom: 1px solid #c1c1c1;
+  }
+  .drawer-container {
+      width: 100%;
+      height: calc(100vh - 65.8px);
+    }
+  
+  .search{
+    display: flex;
+    width: 700px;
+    margin-left: 50px;
+    padding: 0px 10px;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+    gap: 5px;
+  
+    .search_input{
+      height: 50px;
+      outline: none;
+      border: none;
+      background-color: #f1f1f1;
+      width: 500px;
+      font-size: medium;
+    }
+    
+    .search_button{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+    }
+  }
+  
+  .search_button mat-icon{
+    position: absolute;
+    transform: scale(.8);
+  
+  }
+  
+  .menu{
+    margin: 10px;
+  }
+  
+  .search:focus{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .drawer{
+    width: 250px;
+  }
+  
+  .buttons{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid transparent;
+  
+  }
+  
+  .outer_buttons{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid transparent;
+    width: 60px;
+    padding-top: 10px;
+    height: calc(100vh - 77px);
+    padding-left: 10px;
+    transition: padding-left 0s ease, width .08s ease;
+  }
+  
+  .outer_buttons:hover{
+    width: 300px;
+    padding-left: 0px;
+    padding-right: 10px;
+  
+    .in_outer_button{
+      border-radius: 0px 25px 25px 0px;
+      padding: 3px 13px;
+    }
+  }
+  
+  
+  .in_outer_button{
+    border-radius: 50%;
+    padding: 3px 3px;
+    background-color: #fafafa;
+    border: none !important; 
+  
+  }
+  
+  
+  .drawer_button{
+    border-radius: 0px 25px 25px 0px;
+    padding: 3px;
+    background-color: #fafafa;
+  
+  }
+  
+  .toggle{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 242px;
+  }
+  
+  .toggle span{
+    padding: 0px 20px;
+  }
+  
+  .toggle svg{
+    padding: 0px 2px;
+  }
+  
+  .header_buttons{
+    display: flex;
+    margin-left: 120px;
+    gap: 30px;
+    .account{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+  
+  .account_menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    height: 260px;
+  }
+  
+  .content{
+    display: flex;
+  }
+  
+  .sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    height: calc(100vh - 65.8px);
+  }
+  
+  .sidebar_icons{
+    margin: 5px;
+  }
+  
+  .notes{
+    width: 100%;
+  }
+  
+  ::ng-deep .mat-button-toggle-checked {
+    background-color: rgb(254, 239, 195) !important;
+  }

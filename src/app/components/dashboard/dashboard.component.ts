@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
 
   labels: string[] = []
 
-  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private router: Router, private dataService: DataService,public dialog:MatDialog) {
+  constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, public router: Router, public dataService: DataService,public dialog:MatDialog) {
     iconRegistry.addSvgIconLiteral('menu-icon', sanitizer.bypassSecurityTrustHtml(MENU_ICON));
     iconRegistry.addSvgIconLiteral('refresh-icon', sanitizer.bypassSecurityTrustHtml(REFRESH_ICON));
     iconRegistry.addSvgIconLiteral('list-view-icon', sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON));
@@ -54,10 +54,9 @@ export class DashboardComponent implements OnInit, OnDestroy{
       this.drawerState = false
   }
 
-  updateSearchTerm(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    console.log('User entered search text:', input.value);
-    this.dataService.updateSearchText(input.value); // Send search term to DataService
+  search(event: any) {
+    console.log(event.target.value)
+    this.dataService.outgoingData(event.target.value);
   }
 
   logout(): void {
