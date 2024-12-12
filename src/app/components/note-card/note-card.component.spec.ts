@@ -50,24 +50,7 @@ describe('NoteCardComponent', () => {
         jasmine.any(Object)
         );
         expect(component.updateList.emit).toHaveBeenCalledWith({ _id: '12345', action: 'archive' });
-    });
-
-    it('should open edit dialog and emit updateList on dialog close with archive action', () => {
-        spyOn(matDialog, 'open').and.returnValue({
-          afterClosed: () => of({ archived: true }),
-        } as any);
-        spyOn(component.updateList, 'emit');
-      
-        component.editNoteDialog();
-      
-        expect(matDialog.open).toHaveBeenCalledWith(UpdateNoteComponent, {
-          height: 'auto',
-          width: '600px',
-          data: component.noteDetails,
-        });
-        expect(component.updateList.emit).toHaveBeenCalledWith({ _id: component.noteDetails._id, action: 'archive' });
-      });
-      
+    });      
 
       it('should update note color when handleNoteColor is called', () => {
         spyOn(component['httpService'], 'putApiCall').and.returnValue(of({}));
@@ -91,7 +74,7 @@ describe('NoteCardComponent', () => {
         fixture.detectChanges();
       
         const noteCardElement = fixture.debugElement.query(By.css('.notecard')).nativeElement;
-        expect(noteCardElement.style.backgroundColor).toBe('rgb(250, 175, 168)'); // Converted to RGB
+        expect(noteCardElement.style.backgroundColor).toBe('rgb(250, 175, 168)');
       });
       
 });

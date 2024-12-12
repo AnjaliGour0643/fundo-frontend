@@ -85,24 +85,32 @@ export class NoteCardComponent {
     const dialogRef = this.dialog.open(UpdateNoteComponent, {
       height: 'auto',
       width: '600px',
-      data: this.noteDetails,
+      data: { ...this.noteDetails }, // Pass a copy of noteDetails to prevent direct mutation
     });
-
+  
     dialogRef.afterClosed().subscribe((result) => {
-      if (result?.archived) {
-        this.updateList.emit({ _id: this.noteDetails._id, action: 'archive' });
-      } else if (result?.trashed) {
-        this.updateList.emit({ _id: this.noteDetails._id, action: 'trash' });
-      }else if (result) {
-        this.noteDetails = { 
-          title: result.title, 
-          description: result.description, 
-          _id: result._id, 
-          color: result.color 
-        };
+      if (result) {
+        const hasChanges = result.title !== this.noteDetails.title || result.description !== this.noteDetails.description || result.color !== this.noteDetails.color;
+  
+        if (hasChanges) {
+          this.noteDetails = { 
+            title: result.title, 
+            description: result.description, 
+            _id: result._id, 
+            color: result.color 
+          };
+  
+          this.updateList.emit({
+            _id: this.noteDetails._id,
+            title: result.title,
+            description: result.description,
+            color: result.color,
+          });
+        }
       }
     });
   }
+  
 
   handleNoteColor(color: string) {
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);

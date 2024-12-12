@@ -19,7 +19,7 @@
     opacity: 1;
   }
 
-  .notecard:hover .buttons{
+  .notecard:hover .buttons {
     opacity: 1;
   }
 }
@@ -58,10 +58,15 @@
   align-items: center;
   justify-content: space-around;
   transition: opacity 0.45s ease;
-  transform: scale(.9);
+  transform: scale(0.9);
 
   &:hover {
     pointer-events: auto;
+  }
+
+  &.trash-buttons {
+    justify-content: flex-start; 
+    gap: 10px; 
   }
 }
 
@@ -81,7 +86,7 @@
   transform: scale(0.9);
 }
 
-.archive-icon-button{
+.archive-icon-button {
   transform: scale(1.1);
 }
 
@@ -89,7 +94,7 @@
   display: flex;
 }
 
-.colorbutton{
+.colorbutton {
   width: 30px;
   height: 30px;
   border: 1px solid white;
@@ -97,12 +102,12 @@
   margin: 2px;
 }
 
-.colormenu{
+.colormenu {
   display: flex;
 }
 
-::ng-deep {  
-  .mat-mdc-menu-panel {  
-    max-width: unset !important;  
-  }  
+::ng-deep {
+  .mat-mdc-menu-panel {
+    max-width: unset !important;
+  }
 }
