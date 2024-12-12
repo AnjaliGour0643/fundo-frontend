@@ -98,30 +98,5 @@ describe('DashboardComponent', () => {
     component.ngOnDestroy();
     expect(component.subscription.unsubscribe).toHaveBeenCalled();
   });
-
-
-    // it('should render the email and firstname from localStorage in the profile menu', () => {
-  //   const compiled = fixture.nativeElement as HTMLElement;
-  
-  //   // Trigger the profile menu
-  //   const profileMenuButton = compiled.querySelector('[matMenuTriggerFor="profileMenu"]')!;
-  //   profileMenuButton.dispatchEvent(new Event('click'));
-  //   fixture.detectChanges(); // Update the DOM after the event
-  
-  //   const emailElement = compiled.querySelector('.profile-details span:first-child')!;
-  //   const firstnameElement = compiled.querySelector('.profile-details span:nth-of-type(2)')!;
-  
-  //   expect(emailElement.textContent).toBe(localStorage.getItem('email'));
-  //   expect(firstnameElement.textContent).toContain(`Hi, ${localStorage.getItem('firstname')}!`);
-  // });
-
-  
-  // it('should initialize component with default values', () => {
-  //   expect(component.email).toBe(localStorage.getItem('email'));
-  //   expect(component.firstname).toBe(localStorage.getItem('fname'));
-  //   expect(component.drawerState).toBeFalse();
-  //   expect(component.currentRoute).toBe('');
-  //   expect(component.labels).toEqual([]);
-  // });
   
 });

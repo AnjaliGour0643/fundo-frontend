@@ -1,5 +1,4 @@
-  
-  import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -62,6 +61,10 @@ export class DashboardComponent implements OnInit, OnDestroy{
   logout(): void {
     localStorage.clear();
     this.router.navigate(['']);
+  }
+
+  navigateTo(route:string){
+    this.router.navigate(['/dashboard', route])
   }
 
   editlabels(){
