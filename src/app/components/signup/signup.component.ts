@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http-service/http.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class SignupComponent {
 
   registerForm!: FormGroup
 
-  constructor(private formBuilder: FormBuilder, private httpService: HttpService){}
+  constructor(private formBuilder: FormBuilder, private httpService: HttpService, private router: Router ){}
 
   ngOnInit(){
 
@@ -34,6 +35,7 @@ export class SignupComponent {
       this.httpService.postApiCall('/api/v1/users', {firstname, lastname, email, password}).subscribe({
         next: (res) => {
           console.log(res)
+          this.router.navigate(['/']);
         },
         error: (err) => {
           console.log(err)
